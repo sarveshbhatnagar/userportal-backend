@@ -1,16 +1,13 @@
-const healthPath = '/health';
 const createUserPath = '/createUser';
-const registerPath = '/registerPath';
+const registerPath = '/register';
 const loginPath = '/login';
-const verifyPath = '/verify';
+const deleteUserPath = '/deleteUser';
+const transferUser = '/transferUser';
 
 exports.handler = async(event) => {
     console.log('Request Event : ', event);
     let response;
     switch(true) {
-        case event.httpMethod === "GET" && event.path === healthPath:
-            response = buildResponse(200);
-            break;
         case event.httpMethod === "POST" && event.path === registerPath:
             response = buildResponse(200);
             break;
@@ -20,7 +17,10 @@ exports.handler = async(event) => {
         case event.httpMethod === "POST" && event.path === loginPath:
             response = buildResponse(200);
             break;
-        case event.httpMethod === "POST" && event.path === verifyPath:
+        case event.httpMethod === "POST" && event.path === deleteUserPath:
+            response = buildResponse(200);
+            break;
+        case event.httpMethod === "POST" && event.path === transferUser:
             response = buildResponse(200);
             break;
         default:

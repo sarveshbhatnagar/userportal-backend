@@ -1,3 +1,4 @@
+const utils = require('./utils/utils');
 const createUserPath = '/createUser';
 const registerPath = '/register';
 const loginPath = '/login';
@@ -9,32 +10,22 @@ exports.handler = async(event) => {
     let response;
     switch(true) {
         case event.httpMethod === "POST" && event.path === registerPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === createUserPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === loginPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === deleteUserPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === transferUser:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         default:
-            response = buildResponse(404, "404 Path Not Found!");
+            response = utils.buildResponse(404, "404 Path Not Found!");
     }
 }
 
-function buildResponse(statusCode, body){
-    return {
-        statusCode: statusCode,
-        headers:{
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    }
-}

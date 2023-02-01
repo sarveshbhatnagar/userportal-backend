@@ -16,7 +16,7 @@ const userTable = 'jinemister-users';
 
 
 // Register class startes here
-class Register{
+class register{
 
     constructor(name, email, username, is_manager, is_active, manager_hash, password){
         this.name = name;
@@ -92,7 +92,7 @@ console.log(saveUserResp(saveUserResponse));
 
 // Pervious Register function starts here
 
-"to get the pervious code go to dump.js and get pervious register function"
+"to get the pervious code go to dump.js and"
 
 // Pervious Register function ends here.
 

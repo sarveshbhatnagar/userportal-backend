@@ -15,3 +15,8 @@ export function buildResponse(statusCode, body){
         body: JSON.stringify(body)
     }
 }
+
+
+export function isCharacterALetter(char) {
+    return (/[a-zA-Z]/).test(char)
+  }

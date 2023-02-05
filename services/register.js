@@ -2,6 +2,11 @@
 // AWS.config.update({
 //     region: 'us-east-1'
 // })
+
+import { isCharacterALetter } from "../utils/utils";
+import { buildResponse } from "../utils/utils";
+
+
 const AWS  = require('./constants')
 const utils = require('../utils/utils')
 const bcrypt = require('bcryptjs')
@@ -25,18 +30,24 @@ async function register(userInfo) {
             message: 'All fields are required'
         })
     }
+    const errorup = "The Username is invalid. It should consists of atleast 4 letters and should start with an alphabet"
 
 
-
-    const dynamoUser = await getuser(username.toLowerCase().trim());
+    const dynamoUser = await getUser(username.toLowerCase().trim());
     if (dynamoUser && dynamoUser.username) {
         return buildResponse(401, {
             message: username+'username already exits in our database. Please choose a different username'
         })
     }
 
+    const validUser = await validUser(username.toLowerCase.trim());
+    if (validUser){
+        return buildResponse(401, {
+            message: errorup
+        })
+    }
 
-    const encryptedPW = bcrypt.hashSync(password.trim(), 10);
+    const encryptedPassword = bcrypt.hashSync(password.trim(), 10);
     const user ={
         name: name,
         email: email,
@@ -80,4 +91,11 @@ async function saveUser(user){
     })
 }
 
+
+async function validUser(user){
+    if (!len(username) >= 4 && !isCharacterALetter(username[0])){
+        throw errorup
+    }
+        
+}
 module.exports.register = register;

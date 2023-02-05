@@ -40,8 +40,8 @@ async function register(userInfo) {
         })
     }
 
-    const validUser = await validUser(username.toLowerCase.trim());
-    if (validUser){
+    const validuser = await validUser(username.toLowerCase.trim());
+    if (validuser){
         return buildResponse(401, {
             message: errorup
         })

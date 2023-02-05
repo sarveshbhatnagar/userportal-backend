@@ -1,10 +1,10 @@
-const createUserPath = '/createUser';
+const createUserPath = '/createuser';
 const registerPath = '/register';
 const loginPath = '/login';
-const deleteUserPath = '/deleteUser';
-const transferUser = '/transferUser';
+const deleteUserPath = '/deleteuser';
+const transferUser = '/transferuser';
 
-exports.handler = async(event) => {
+export const handler = async(event) => {
     console.log('Request Event : ', event);
     let response;
     switch(true) {
@@ -30,6 +30,7 @@ exports.handler = async(event) => {
 
 function buildResponse(statusCode, body){
     return {
+        isBase64Encoded: false,
         statusCode: statusCode,
         headers:{
             'Access-Control-Allow-Origin': '*',

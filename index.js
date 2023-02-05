@@ -7,6 +7,7 @@ const deleteUserPath = '/deleteuser';
 const transferUser = '/transferuser';
 const healthPath = '/health';
 
+
 export const handler = async(event) => {
     console.log('Request Event : ', event);
     let response;

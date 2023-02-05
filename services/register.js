@@ -21,7 +21,7 @@ async function register(userInfo) {
     // TODO: have to create a dynamoDB entry for this updated schema
     const password = userinfo.password;
     if (!username || !name || !email || !password) {
-        return utils.buildResponse(401, {
+        return buildResponse(401, {
             message: 'All fields are required'
         })
     }
@@ -30,7 +30,7 @@ async function register(userInfo) {
 
     const dynamoUser = await getuser(username.toLowerCase().trim());
     if (dynamoUser && dynamoUser.username) {
-        return utils.buildResponse(401, {
+        return buildResponse(401, {
             message: username+'username already exits in our database. Please choose a different username'
         })
     }
@@ -46,10 +46,10 @@ async function register(userInfo) {
 
     const saveUserResponse = await saveUser(user);
     if (!saveUserResponse) {
-        return utils.buildResponse(503, {message: 'Server Error. Please try again later.'});
+        return buildResponse(503, {message: 'Server Error. Please try again later.'});
     }
 
-    return utils.buildResponse(200, {username: username});
+    return buildResponse(200, {username: username});
 }
 
 

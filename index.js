@@ -1,13 +1,19 @@
+import { buildResponse } from "./utils/utils";
+
 const createUserPath = '/createuser';
 const registerPath = '/register';
 const loginPath = '/login';
 const deleteUserPath = '/deleteuser';
 const transferUser = '/transferuser';
+const healthPath = '/health';
 
 export const handler = async(event) => {
     console.log('Request Event : ', event);
     let response;
     switch(true) {
+        case event.httpMethod === "GET" && event.path === healthPath:
+            response = buildResponse(200, {"message": "Health check passed!"});
+            break;
         case event.httpMethod === "POST" && event.path === registerPath:
             response = buildResponse(200);
             break;
@@ -26,16 +32,6 @@ export const handler = async(event) => {
         default:
             response = buildResponse(404, "404 Path Not Found!");
     }
-}
 
-function buildResponse(statusCode, body){
-    return {
-        isBase64Encoded: false,
-        statusCode: statusCode,
-        headers:{
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    }
+    return response;
 }

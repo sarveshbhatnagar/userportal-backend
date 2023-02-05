@@ -1,0 +1,31 @@
+{
+  "name": "stuserportal",
+  "version": "1.0.0",
+  "description": "User Authentication Backend for Student Times.",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild index.js --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "export": "cd build && zip index.js.zip index.js",
+    "postbuild": "cd dist && zip -r index.zip index.js*",
+    "prebuild": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarveshbhatnagar/userportal-backend.git"
+  },
+  "keywords": [],
+  "author": "Revoltronx",
+  "license": "None",
+  "bugs": {
+    "url": "https://github.com/sarveshbhatnagar/userportal-backend/issues"
+  },
+  "homepage": "https://github.com/sarveshbhatnagar/userportal-backend#readme",
+  "devDependencies": {
+    "esbuild": "^0.17.5",
+    "jest": "^29.4.1"
+  },
+  "dependencies": {
+    "lambda-build": "^1.0.6"
+  }
+}

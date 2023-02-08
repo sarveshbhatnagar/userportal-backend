@@ -5,26 +5,26 @@ class CustomErrorBuilder{
         throw new Error("ErrorBuilder is not meant to be instantiated");
     }
 
-    message(message){
+    static setMessage(message){
         this.message = message;
         return this;
     }
 
-    status(status){
+    static setStatus(status){
         this.status = status;
         return this;
     }
 
-    field(field){
+    static setField(field){
         this.field = field;
         return this;
     }
 
-    build(){
+    static build(){
         if(!this.message || !this.status){
             throw new Error("Missing required fields to build error object (message, status)");
         }
-        return new Error(this.message, this.status, this.field);
+        return new CustomError(this.message, this.status, this.field);
     }
     
 }

@@ -1,5 +1,6 @@
 import { buildResponse } from "./utils/utils";
 
+
 const createUserPath = '/createuser';
 const registerPath = '/register';
 const loginPath = '/login';

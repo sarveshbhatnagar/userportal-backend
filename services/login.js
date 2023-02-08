@@ -1,4 +1,4 @@
-import {builldResponse} from '../utils/responseBuilder';
+import { buildResponse } from '../utils/utils';
 import AWS from 'aws-sdk';
 import { ValidateHelper } from '../utils/validateHelper';
 import { CustomErrorBuilder } from '../utils/customError';
@@ -21,18 +21,20 @@ async function login(user){
     // TODO get user from database
     // TODO compare password
     // TODO return token with response.
-    builldResponse(200, {message: "Login successful"});
+    return buildResponse(200, {message: "Login successful"});
 
 }
 
-async function validateLogin(user){
-    const validateHelper = new ValidateHelper();
+function validateLogin(user){
+    let validateHelper = new ValidateHelper();
     if(!user){
-        data = CustomErrorBuilder.message("Missing username or password")
-                                .status(400)
-                                .build();
+        validateHelper.setError(CustomErrorBuilder
+                    .setMessage("No user provided")
+                    .setStatus(400)
+                    .build());
 
-        return validateHelper.setError(data);
+        return validateHelper;
+
     }
 
     const username = user.username;
@@ -41,19 +43,25 @@ async function validateLogin(user){
 
     // Reasoning behind creating this method is to allow maintainability
     // and readability. If we were to make changes, or reuse, we can do so.
-    if(validateLoginUsername(username)){
-        return validateHelper.setError(CustomErrorBuilder
-            .message("Missing username")
-            .field("username")
-            .status(400).build());
+    if(!validateLoginUsername(username)){
+        validateHelper.setError(CustomErrorBuilder
+            .setMessage("Missing username")
+            .setField("username")
+            .setStatus(400).build());
+        return validateHelper;
     }
     
-    if(validateLoginPassword(password)){
-        return validateHelper.setError(CustomErrorBuilder
-            .message("Missing password")
-            .field("password")
-            .status(400).build());
+    if(!validateLoginPassword(password)){
+        validateHelper.setError(CustomErrorBuilder
+            .setMessage("Missing password")
+            .setField("password")
+            .setStatus(400).build());
+        return validateHelper;
     }
 
+    return validateHelper;
+
 }
+
+export {login};
 

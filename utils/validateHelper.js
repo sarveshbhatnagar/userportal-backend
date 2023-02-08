@@ -1,5 +1,3 @@
-import {CustomErrorBuilder} from './customError';
-
 class ValidateHelper{
     error = false;
     errorData = null;

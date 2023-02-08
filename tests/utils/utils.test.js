@@ -29,4 +29,13 @@ describe('Utils Module', () => {
         });
     });
 
+
+    test("Should throw an error if no status code is provided", () => {
+        expect(() => buildResponse()).toThrow();
+    });
+
+    test("Should throw an error if status code is not a number", () => {
+        expect(() => buildResponse("invalidStatus")).toThrow();
+    });
+
 });

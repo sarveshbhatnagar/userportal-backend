@@ -16,12 +16,10 @@
       "<rootDir>"
     ],
     "modulePaths": [
-      "<rootDir>",
-      "<rootDir>/backend"
+      "<rootDir>"
     ],
     "moduleDirectories": [
-      "node_modules",
-      "backend"
+      "node_modules"
     ]
   },
   "repository": {

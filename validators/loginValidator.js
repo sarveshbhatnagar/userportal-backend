@@ -1,8 +1,20 @@
 
 import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
-import { validateLoginUsername } from "./username";
-import { validateLoginPassword } from "./password";
+
+const validateLoginPassword = (password) => {
+    if (!password) {
+        return false;
+    }
+    return true;
+}
+
+const validateLoginUsername = (username) => {
+    if (!username) {
+        return false;
+    }
+    return true;
+}
 
 function validateLogin(user){
     let validateHelper = new ValidateHelper();

@@ -2,8 +2,6 @@ class ValidateHelper{
     error = false;
     errorData = null;
 
-    instance = null;
-
     constructor(){
         this.error = false;
         this.errorData = null;

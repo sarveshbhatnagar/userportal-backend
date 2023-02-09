@@ -14,54 +14,87 @@ const bcrypt = require('bcryptjs')
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = 'jinemister-users';
 
-async function register(userInfo) {
-    const name = userinfo.name;
-    const email = userinfo.email;
-    const username = userinfo.username;
-    // correct schema starts here
-    const is_manager = userinfo.is_manager;
-    const is_active =userinfo.is_active;
-    const manager_hash = userinfo.manager_hash; //default superuser
-    // correct schema ends here]
-    // TODO: have to create a dynamoDB entry for this updated schema
-    const password = userinfo.password;
-    if (!username || !name || !email || !password) {
-        return buildResponse(401, {
-            message: 'All fields are required'
-        })
-    }
-    const errorup = "The Username is invalid. It should consists of atleast 4 letters and should start with an alphabet"
 
+// Register class startes here
+class Register{
 
-    const dynamoUser = await getUser(username.toLowerCase().trim());
-    if (dynamoUser && dynamoUser.username) {
-        return buildResponse(401, {
-            message: username+'username already exits in our database. Please choose a different username'
-        })
+    constructor(name, email, username, is_manager, is_active, manager_hash, password){
+        this.name = name;
+        this.username = username;
+        this.email= email;
+        this.is_manager = is_manager;
+        this.is_active = is_active;
+        this.manager_hash = manager_hash;
+        this.password = password;
     }
 
-    const validuser = await validUser(username.toLowerCase.trim());
-    if (validuser){
-        return buildResponse(401, {
-            message: errorup
-        })
+    checkEmpty(username, name, email, password){
+        if (!username || !name || !email || !password) {
+            return buildResponse(401, {
+                message: 'All fields are required'
+            })
+        }  
     }
 
-    const encryptedPassword = bcrypt.hashSync(password.trim(), 10);
-    const user ={
-        name: name,
-        email: email,
-        username: username.toLowerCase().trim(),
-        password: encryptedPassword
+    matchUsername(dynamoUser){
+        if (dynamoUser && dynamoUser.username) {
+            return buildResponse(401, {
+                message: '${this.username} username already exits in our database. Please choose a different username'
+            })
+        }
     }
 
-    const saveUserResponse = await saveUser(user);
-    if (!saveUserResponse) {
-        return buildResponse(503, {message: 'Server Error. Please try again later.'});
+    checkusername(validuser){
+        if (validuser){
+            return buildResponse(401, {
+                message: errorup
+            })
+        }
     }
 
-    return buildResponse(200, {username: username});
+    password(encryptedPassword){
+        const user ={
+            name: name,
+            email: email,
+            username: username.toLowerCase().trim(),
+            password: encryptedPassword
+        }
+    }
+
+    saveUserResp(saveUserResponse){
+        if (!saveUserResponse) {
+            return buildResponse(503, {message: 'Server Error. Please try again later.'});
+        }
+    
+        return buildResponse(200, {username: username});
+    }
 }
+
+// Register class ends here
+
+// calling Register class functions starts here
+const password = userinfo.password;
+console.log(checkEmpty(password));
+
+const dynamoUser = await getUser(username.toLowerCase().trim());
+console.log(matchUsername(dynamoUser));
+
+const validuser = await validUser(username.toLowerCase.trim());
+console.log(checkusername(validuser));
+
+const encryptedPassword = bcrypt.hashSync(password.trim(), 10);
+password(encryptedPassword);
+
+const saveUserResponse = await saveUser(user);
+console.log(saveUserResp(saveUserResponse));
+
+//  calling Register class function completes here
+
+// Pervious Register function starts here
+
+"to get the pervious code go to dump.js and get pervious register function"
+
+// Pervious Register function ends here.
 
 
 async function getUser(username){
@@ -92,7 +125,7 @@ async function saveUser(user){
 }
 
 
-async function validUser(user){
+async function validUser(user){  //here how to use user (bug) 
     if (!len(username) >= 4 && !isCharacterALetter(username[0])){
         throw errorup
     }

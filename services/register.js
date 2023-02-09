@@ -1,8 +1,3 @@
-// const AWS = require('aws-sdk');
-// AWS.config.update({
-//     region: 'us-east-1'
-// })
-
 import { isCharacterALetter } from "../utils/utils";
 import { buildResponse } from "../utils/utils";
 
@@ -15,8 +10,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = 'jinemister-users';
 
 
-// Register class startes here
-class register{
+class Register{
 
     constructor(name, email, username, is_manager, is_active, manager_hash, password){
         this.name = name;
@@ -70,9 +64,7 @@ class register{
     }
 }
 
-// Register class ends here
 
-// calling Register class functions starts here
 const password = userinfo.password;
 console.log(checkEmpty(password));
 
@@ -88,13 +80,6 @@ password(encryptedPassword);
 const saveUserResponse = await saveUser(user);
 console.log(saveUserResp(saveUserResponse));
 
-//  calling Register class function completes here
-
-// Pervious Register function starts here
-
-"to get the pervious code go to dump.js and"
-
-// Pervious Register function ends here.
 
 
 async function getUser(username){

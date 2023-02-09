@@ -1,3 +1,5 @@
+const utils = require('./utils/utils');
+const createUserPath = '/createUser';
 import { buildResponse } from "./utils/utils";
 
 
@@ -17,22 +19,22 @@ export const handler = async(event) => {
             response = buildResponse(200, {"message": "Health check passed!"});
             break;
         case event.httpMethod === "POST" && event.path === registerPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === createUserPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === loginPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === deleteUserPath:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         case event.httpMethod === "POST" && event.path === transferUser:
-            response = buildResponse(200);
+            response = utils.buildResponse(200);
             break;
         default:
-            response = buildResponse(404, "404 Path Not Found!");
+            response = utils.buildResponse(404, "404 Path Not Found!");
     }
 
     return response;

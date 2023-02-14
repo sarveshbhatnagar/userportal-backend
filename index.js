@@ -7,7 +7,7 @@ const loginPath = '/login';
 const deleteUserPath = '/deleteuser';
 const transferUser = '/transferuser';
 const healthPath = '/health';
-
+// TODO Update create user to transfer user
 
 export const handler = async(event) => {
     console.log('Request Event : ', event);

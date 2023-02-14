@@ -1,7 +1,7 @@
 
 import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
-// TODO Refactor Code
+// Refactor code to make it more modular and use better abstractions.
 const validateLoginPassword = (password) => {
     if (!password) {
         return false;

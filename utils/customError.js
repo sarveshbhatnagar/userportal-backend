@@ -20,11 +20,19 @@ class CustomErrorBuilder{
         return this;
     }
 
+    static resetArgs(){
+        this.message = null;
+        this.status = null;
+        this.field = null;
+    }
+
     static build(){
         if(!this.message || !this.status){
             throw new Error("Missing required fields to build error object (message, status)");
         }
-        return new CustomError(this.message, this.status, this.field);
+        let customError = new CustomError(this.message, this.status, this.field);
+        this.resetArgs();
+        return customError;
     }
     
 }

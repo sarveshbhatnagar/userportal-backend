@@ -1,6 +1,6 @@
 import { validateResponse } from "../validators/utilsValidator"
 
-export function buildResponse(statusCode, body){
+function buildResponse(statusCode, body){
     if(!validateResponse(statusCode, body)){
         throw new Error("Build Response parameters are invalid", statusCode, body);
     }
@@ -17,6 +17,43 @@ export function buildResponse(statusCode, body){
 }
 
 
-export function isCharacterALetter(char) {
+function isCharacterALetter(char) {
     return (/[a-zA-Z]/).test(char)
   }
+
+function checkIfEmpty(val){
+    return val === null || val === ""
+}
+
+function findEmptyParameters(parameters, object){
+    let emptyParameters = ""
+    for(var indx in parameters){
+        if(checkIfEmpty(object[parameters[indx]])){
+            emptyParameters += parameters[indx]
+            emptyParameters += ","
+        }
+    }
+    return emptyParameters
+}
+
+function areObjectsEqual(obj1, obj2) {
+    const obj1Properties = Object.getOwnPropertyNames(obj1);
+    const obj2Properties = Object.getOwnPropertyNames(obj2);
+  
+    if (obj1Properties.length !== obj2Properties.length) {
+      return false;
+    }
+  
+    for (let i = 0; i < obj1Properties.length; i++) {
+      const propertyName = obj1Properties[i];
+      if (obj1[propertyName] !== obj2[propertyName]) {
+        return false;
+      }
+    }
+  
+    return true;
+  }
+
+  export {areObjectsEqual, findEmptyParameters, checkIfEmpty, buildResponse, isCharacterALetter};
+
+  // hiring & permission portal and transfer portal

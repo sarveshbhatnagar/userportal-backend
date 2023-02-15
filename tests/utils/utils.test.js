@@ -1,4 +1,4 @@
-import {buildResponse} from '../../utils/utils';
+import {buildResponse, isCharacterALetter} from '../../utils/utils';
 
 
 describe('Utils Module', () => {
@@ -37,5 +37,10 @@ describe('Utils Module', () => {
     test("Should throw an error if status code is not a number", () => {
         expect(() => buildResponse("invalidStatus")).toThrow();
     });
+
+    test("Should return true if first character is an aplhabet", () => {
+        const response = isCharacterALetter("a");
+        expect(response).toEqual(true)
+    })
 
 });

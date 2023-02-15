@@ -9,10 +9,10 @@
     "export": "cd build && zip index.js.zip index.js",
     "postbuild": "cd dist && zip -r index.zip index.js*",
     "prebuild": "rm -rf dist"
-  }, 
-  "jest":{
+  },
+  "jest": {
     "rootDir": "./",
-    "roots":[
+    "roots": [
       "<rootDir>"
     ],
     "modulePaths": [
@@ -42,7 +42,9 @@
   "dependencies": {
     "aws-sdk": "^2.1310.0",
     "bcryptjs": "^2.4.3",
+    "chai": "^4.3.7",
     "lambda-build": "^1.0.6",
+    "sinon": "^15.0.1",
     "uuid": "^9.0.0"
   }
 }

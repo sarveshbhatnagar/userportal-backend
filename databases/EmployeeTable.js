@@ -1,4 +1,4 @@
-import {AWSService} from "./AWSService";
+import {AWSService} from "./awsService";
 
 database = AWSService
 

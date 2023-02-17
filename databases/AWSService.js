@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import {Database} from "./Database";
+import {Database} from "./database";
 
 class AWSService extends Database {
 

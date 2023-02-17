@@ -1,4 +1,4 @@
-import { AWSService } from "../../databases/AWSService";
+import { AWSService } from "../../databases/awsService";
 import sinon from 'sinon';
 import AWS from 'aws-sdk';
 import { expect } from 'chai';

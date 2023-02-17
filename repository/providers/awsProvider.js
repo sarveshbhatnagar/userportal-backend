@@ -18,7 +18,12 @@ class AWSProvider extends DatabaseSchema {
     }
 
     static async get(params) {
-        return AWSProvider.getInstance().get(params);
+        return AWSProvider.getInstance().get(params).promise()
+        .then((data) => data.Item)
+        .catch((err) => {
+            console.log("Error getting data: ", err);
+            throw err;
+        });
     }
 
     static async put(params) {

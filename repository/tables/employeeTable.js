@@ -3,7 +3,7 @@ import {Tables} from "../../utils/constants"
 
 class EmployeeTable {    
 
-    static async getEmployee(id, database) {
+    static async getEmployee(id) {
 
         const params = {
             tableName: Tables.EMPLOYEE,

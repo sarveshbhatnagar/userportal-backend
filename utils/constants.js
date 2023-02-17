@@ -1,4 +1,4 @@
-import {AWSService} from "../repository/services/awsService";
+import {AWSProvider} from "../repository/providers/awsProvider";
 
 class Tables {
     static EMPLOYEE = 'st-employee';
@@ -6,6 +6,6 @@ class Tables {
     static TEAMS = 'st-teams';
 }
 
-const DATABASE = AWSService;
+const DATABASE = AWSProvider;
 
 export { Tables, DATABASE };

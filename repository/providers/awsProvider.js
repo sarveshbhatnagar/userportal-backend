@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
 import {DatabaseSchema} from "../databaseSchema";
 
-class AWSService extends DatabaseSchema {
+class AWSProvider extends DatabaseSchema {
 
     static setDynamoDb() {
         AWS.config.update({
@@ -18,22 +18,22 @@ class AWSService extends DatabaseSchema {
     }
 
     static async get(params) {
-        return AWSService.getInstance().get(params);
+        return AWSProvider.getInstance().get(params);
     }
 
     static async put(params) {
-        return AWSService.getInstance().put(params);
+        return AWSProvider.getInstance().put(params);
     }
 
     static async update(params) {
-        return AWSService.getInstance().update(params);
+        return AWSProvider.getInstance().update(params);
     }
 
     static async delete(params) {
-        return AWSService.getInstance().delete(params);
+        return AWSProvider.getInstance().delete(params);
     }
 
 }
 
 
-export { AWSService };
+export { AWSProvider };

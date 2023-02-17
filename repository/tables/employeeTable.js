@@ -6,7 +6,7 @@ class EmployeeTable {
     static async getEmployee(id) {
 
         const params = {
-            tableName: Tables.EMPLOYEE,
+            TableName: Tables.EMPLOYEE,
             Key: { id }
         };
 

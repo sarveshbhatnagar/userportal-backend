@@ -1,4 +1,4 @@
-class UserModel{
+class User{
     constructor(name, email, username, isManager, isActive, managerHash, password){
         this.username = username;
         this.password = password;
@@ -10,7 +10,7 @@ class UserModel{
     }
 }
 
-class UserModelBuilder{
+class UserBuilder{
     constructor(username){
         this.username = username;
         return this;
@@ -55,4 +55,7 @@ class UserModelBuilder{
     }
 }
 
-export {UserModel, UserModelBuilder};
+export {User, UserBuilder};
+
+// test ki user properly ban rha h ya nhi...
+// rename usermodel into user

@@ -1,9 +1,9 @@
 import {validateRegistration} from "../../validators/registerValidator";
-import {UserModelBuilder} from "../../models/user";
+import {UserBuilder} from "../../models/user";
 import { ValidateHelper } from "../../utils/validateHelper";
 import {areObjectsEqual} from "../../utils/utils";
 
-const validUser = new UserModelBuilder("abc")
+const validUser = new UserBuilder("abc")
     .setEmail("abc@gasdfn")
     .setName("abc")
     .setPassword("00000000")

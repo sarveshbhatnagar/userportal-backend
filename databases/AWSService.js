@@ -21,15 +21,15 @@ class AWSService extends Database {
         return AWSService.getInstance().get(params);
     }
 
-    async put(params) {
+    static async put(params) {
         return AWSService.getInstance().put(params);
     }
 
-    async update(params) {
+    static async update(params) {
         return AWSService.getInstance().update(params);
     }
 
-    async delete(params) {
+    static async delete(params) {
         return AWSService.getInstance().delete(params);
     }
 

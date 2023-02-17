@@ -1,11 +1,5 @@
-import {AWSService} from "./awsService";
-
-database = AWSService
-
-class Tables {
-    static EMPLOYEE = 'st-employee';
-    static PERMISSION = 'st-permission';
-}
+import {DATABASE} from "../utils/constants";
+import {Tables} from "../utils/constants"
 
 class EmployeeTable {    
 
@@ -16,7 +10,7 @@ class EmployeeTable {
             Key: { id }
         };
 
-        const result = await database.get(params);
+        const result = await DATABASE.get(params);
 
         return result.Item;
     }

@@ -1,4 +1,4 @@
-class Database {
+class DatabaseSchema {
     constructor() {
         if (this.constructor === Database) {
             throw new Error("Database is an abstract class");
@@ -28,4 +28,4 @@ class Database {
 
 }
 
-export { Database };
+export { DatabaseSchema };

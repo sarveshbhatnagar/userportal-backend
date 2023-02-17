@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
-import {Database} from "./database";
+import {DatabaseSchema} from "../databaseSchema";
 
-class AWSService extends Database {
+class AWSService extends DatabaseSchema {
 
     static setDynamoDb() {
         AWS.config.update({

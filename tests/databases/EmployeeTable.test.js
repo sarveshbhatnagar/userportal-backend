@@ -1,4 +1,4 @@
-import {EmployeeTable} from '../../databases/EmployeeTable';
+import {EmployeeTable} from '../../repository/tables/employeeTable';
 import sinon from 'sinon';
 import {expect} from 'chai';
 

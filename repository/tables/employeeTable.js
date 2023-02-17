@@ -1,5 +1,5 @@
-import {DATABASE} from "../utils/constants";
-import {Tables} from "../utils/constants"
+import {DATABASE} from "../../utils/constants";
+import {Tables} from "../../utils/constants"
 
 class EmployeeTable {    
 

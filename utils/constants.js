@@ -1,4 +1,4 @@
-import {AWSService} from "../databases/awsService";
+import {AWSService} from "../repository/services/awsService";
 
 class Tables {
     static EMPLOYEE = 'st-employee';

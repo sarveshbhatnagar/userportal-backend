@@ -1,10 +1,10 @@
 class TeamService {
-  constructor({ teamRepository }) {
-    this.teamRepository = teamRepository;
+  constructor(teamTable) {
+    this.teamTable = teamTable;
   }
 
   async getTeam(id) {
-    const team = await this.teamRepository.getTeam(id);
+    const team = await this.teamTable.getTeam(id);
     return team;
   }
 }

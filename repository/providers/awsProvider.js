@@ -28,18 +28,29 @@ class AWSProvider extends DatabaseSchema {
 
     static async put(params) {
         return AWSProvider.getInstance().put(params).promise()
-        .then((_) => true).catch((err) => {
+        .then((_) => true)
+        .catch((err) => {
             console.log("Error putting data: ", err);
             throw err;
         });
     }
 
     static async update(params) {
-        return AWSProvider.getInstance().update(params);
+        return AWSProvider.getInstance().update(params).promise()
+        .then((_) => true)
+        .catch((err) => {
+            console.log("Error updating data: ", err);
+            throw err;
+        });
     }
 
     static async delete(params) {
-        return AWSProvider.getInstance().delete(params);
+        return AWSProvider.getInstance().delete(params).promise()
+        .then((_) => true)
+        .catch((err) => {
+            console.log("Error deleting data: ", err);
+            throw err;
+        });
     }
 
 }

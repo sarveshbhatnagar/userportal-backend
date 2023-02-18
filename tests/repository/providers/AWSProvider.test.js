@@ -1,4 +1,4 @@
-import {AWSProvider} from '../../repository/providers/awsProvider';
+import {AWSProvider} from '../../../repository/providers/awsProvider';
 import sinon from 'sinon';
 import AWS from 'aws-sdk';
 import { expect } from 'chai';

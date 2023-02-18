@@ -1,7 +1,7 @@
-import {EmployeeTable} from '../../repository/tables/employeeTable';
+import {EmployeeTable} from '../../../repository/tables/employeeTable';
 import sinon from 'sinon';
 import {expect} from 'chai';
-import { DATABASE } from '../../utils/constants';
+import { DATABASE } from '../../../utils/constants';
 
 
 describe('EmployeeTable', () => {

@@ -94,4 +94,9 @@ describe('AWSProvider', () => {
     });
       
     });
+
+    describe('put', () => {
+        
+
+    });
 });

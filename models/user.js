@@ -47,10 +47,10 @@ class UserBuilder{
     }
 
     build(){
-        if(!('username' in this)){
+        if(!('username' in this ) || this.username === undefined){
             throw new Error('username is missing');
         }
-
+        
         return new User(this.name,this.email, this.username, this.isManager, this.isActive, this.managerHash, this.password)
     }
 }

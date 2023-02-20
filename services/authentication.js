@@ -1,0 +1,1 @@
+// create a class for authentication containing functions like login, register, forgot password, etc.

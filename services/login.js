@@ -5,7 +5,7 @@ import { validateLogin } from '../validators/loginValidator';
 AWS.config.update({region: 'us-west-2'});
 
 // TODO: Move this to a config file, or environment variable.
-// Will be used to create a token for the user, later.
+// Will be used to create a token for the user, later
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const employeeTable = "st-employee";
 

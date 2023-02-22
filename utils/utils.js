@@ -16,17 +16,16 @@ function buildResponse(statusCode, body){
     }
 }
 
+function checkIfEmpty(val){
+    return val === null || val === "" || val === undefined;
+}
 
 function isCharacterALetter(char) {
-    if(!char || char === "" || char === null || char === undefined){
+    if(checkIfEmpty(char)){
         return false;
     }
     return (/[a-zA-Z]/).test(char)
   }
-
-function checkIfEmpty(val){
-    return val === null || val === "" || val === undefined;
-}
 
 function findEmptyParameters(parameters, object){
     console.log("findEmptyParameters")
@@ -46,7 +45,7 @@ function areObjectsEqual(obj1, obj2) {
         return true;
     }
 
-    if (obj1 === null || obj2 === null || obj1 === undefined || obj2 === undefined) {
+    if (checkIfEmpty(obj1) || checkIfEmpty(obj2)) {
         return false;
     }
 

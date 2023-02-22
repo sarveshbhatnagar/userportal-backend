@@ -76,7 +76,7 @@ describe('isCharacterALetter', () => {
         const response = isCharacterALetter("");
         expect(response).toEqual(false)
     })
-    
+
 });
 
 
@@ -98,6 +98,11 @@ describe('Check if empty', () => {
 
     test("Should return true if value is undefined", () => {
         const response = checkIfEmpty(undefined);
+        expect(response).toEqual(true)
+    })
+
+    test("Should return true if nothing is passed", () => {
+        const response = checkIfEmpty();
         expect(response).toEqual(true)
     })
 });

@@ -3,6 +3,7 @@ import {buildResponse} from '../../utils/utils';
 
 const username = "testuser";
 const password = "testpassword";
+const message = "Missing Login arguments"
 
 
 describe('Login Module', () => {
@@ -14,12 +15,12 @@ describe('Login Module', () => {
     
     test('Missing username', async () => {
         const response = await login({password: password});
-        expect(response).toEqual(buildResponse(400, {message: "Missing username", field: "username"}));
+        expect(response).toEqual(buildResponse(400, {message: message, field: "username,"}));
     });
     
     test('Missing password', async () => {
         const response = await login({username: username});
-        expect(response).toEqual(buildResponse(400, {message: "Missing password", field: "password"}));
+        expect(response).toEqual(buildResponse(400, {message: message, field: "password,"}));
     });
 
     test('Should return a 200 if user is valid', async () => {

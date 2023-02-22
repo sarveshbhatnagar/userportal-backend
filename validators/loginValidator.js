@@ -1,20 +1,8 @@
 
 import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
+import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 
-const validateLoginPassword = (password) => {
-    if (!password) {
-        return false;
-    }
-    return true;
-}
-
-const validateLoginUsername = (username) => {
-    if (!username) {
-        return false;
-    }
-    return true;
-}
 
 function validateLogin(user){
     let validateHelper = new ValidateHelper();
@@ -28,29 +16,23 @@ function validateLogin(user){
 
     }
 
-    const username = user.username;
-    const password = user.password;
+    let parameters = ["password", "username"]
 
-
-    // Reasoning behind creating this method is to allow maintainability
-    // and readability. If we were to make changes, or reuse, we can do so.
-    if(!validateLoginUsername(username)){
-        validateHelper.setError(CustomErrorBuilder
-            .setMessage("Missing username")
-            .setField("username")
-            .setStatus(400).build());
-        return validateHelper;
-    }
+    console.log(user)
     
-    if(!validateLoginPassword(password)){
+    let emptyParameters = findEmptyParameters(parameters, user)
+    console.log(emptyParameters)
+    
+    if(!checkIfEmpty(emptyParameters)){
         validateHelper.setError(CustomErrorBuilder
-            .setMessage("Missing password")
-            .setField("password")
-            .setStatus(400).build());
-        return validateHelper;
+            .setMessage("Missing Login arguments")
+            .setField(emptyParameters)
+            .setStatus(400)
+            .build());
+        return validateHelper
     }
 
-    return validateHelper;
+    return validateHelper
 
 }
 

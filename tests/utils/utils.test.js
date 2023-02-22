@@ -1,4 +1,4 @@
-import {buildResponse, isCharacterALetter} from '../../utils/utils';
+import {buildResponse, isCharacterALetter, checkIfEmpty} from '../../utils/utils';
 
 
 describe('Utils Module', () => {
@@ -43,4 +43,27 @@ describe('Utils Module', () => {
         expect(response).toEqual(true)
     })
 
+});
+
+
+describe('Check if empty', () => {
+    test("Should return true if value is null", () => {
+        const response = checkIfEmpty(null);
+        expect(response).toEqual(true)
+    })
+
+    test("Should return true if value is empty string", () => {
+        const response = checkIfEmpty("");
+        expect(response).toEqual(true)
+    })
+
+    test("Should return false if value is not empty", () => {
+        const response = checkIfEmpty("test");
+        expect(response).toEqual(false)
+    })
+
+    test("Should return true if value is undefined", () => {
+        const response = checkIfEmpty(undefined);
+        expect(response).toEqual(true)
+    })
 });

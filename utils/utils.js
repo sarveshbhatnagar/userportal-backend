@@ -18,6 +18,9 @@ function buildResponse(statusCode, body){
 
 
 function isCharacterALetter(char) {
+    if(!char || char === "" || char === null || char === undefined){
+        return false;
+    }
     return (/[a-zA-Z]/).test(char)
   }
 

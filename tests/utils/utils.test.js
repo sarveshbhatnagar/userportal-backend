@@ -1,7 +1,7 @@
 import {buildResponse, isCharacterALetter, checkIfEmpty, areObjectsEqual} from '../../utils/utils';
 
 
-describe('Utils Module', () => {
+describe('Utils Module : Build Response', () => {
 
     test("Should return a properly formatted response", () => {
         const response = buildResponse(200, {message: "Test message"});
@@ -38,11 +38,45 @@ describe('Utils Module', () => {
         expect(() => buildResponse("invalidStatus")).toThrow();
     });
 
-    test("Should return true if first character is an aplhabet", () => {
+});
+
+describe('isCharacterALetter', () => {
+    test("Should return true if character is a letter", () => {
         const response = isCharacterALetter("a");
         expect(response).toEqual(true)
     })
 
+    test("Should return false if character is not a letter", () => {
+        const response = isCharacterALetter("1");
+        expect(response).toEqual(false)
+    })
+
+    test("Should return false if character is not a letter", () => {
+        const response = isCharacterALetter("!");
+        expect(response).toEqual(false)
+    })
+
+    test("Should return false if character is not a letter", () => {
+
+        const response = isCharacterALetter(" ");
+        expect(response).toEqual(false)
+    })
+
+    test("Should return false if character is undefined", () => {
+        const response = isCharacterALetter(undefined);
+        expect(response).toEqual(false)
+    })
+
+    test("Should return false if character is null", () => {
+        const response = isCharacterALetter(null);
+        expect(response).toEqual(false)
+    })
+
+    test("Should return false if character is empty string", () => {
+        const response = isCharacterALetter("");
+        expect(response).toEqual(false)
+    })
+    
 });
 
 

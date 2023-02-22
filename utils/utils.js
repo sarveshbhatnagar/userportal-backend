@@ -39,6 +39,14 @@ function findEmptyParameters(parameters, object){
 }
 
 function areObjectsEqual(obj1, obj2) {
+    if (obj1 === null && obj2 === null || obj1 === undefined && obj2 === undefined) {
+        return true;
+    }
+
+    if (obj1 === null || obj2 === null || obj1 === undefined || obj2 === undefined) {
+        return false;
+    }
+
     const obj1Properties = Object.getOwnPropertyNames(obj1);
     const obj2Properties = Object.getOwnPropertyNames(obj2);
   

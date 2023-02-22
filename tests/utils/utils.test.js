@@ -1,4 +1,4 @@
-import {buildResponse, isCharacterALetter, checkIfEmpty} from '../../utils/utils';
+import {buildResponse, isCharacterALetter, checkIfEmpty, areObjectsEqual} from '../../utils/utils';
 
 
 describe('Utils Module', () => {
@@ -67,3 +67,55 @@ describe('Check if empty', () => {
         expect(response).toEqual(true)
     })
 });
+
+
+describe('areObjectsEqual', () => {
+    test('should return true for two equal objects', () => {
+      const obj1 = {a: 1, b: '2', c: true};
+      const obj2 = {a: 1, b: '2', c: true};
+      expect(areObjectsEqual(obj1, obj2)).toBe(true);
+    });
+  
+    test('should return false for two objects with different properties', () => {
+      const obj1 = {a: 1, b: '2', c: true};
+      const obj2 = {a: 1, b: '2', d: false};
+      expect(areObjectsEqual(obj1, obj2)).toBe(false);
+    });
+  
+    test('should return false for two objects with different property values', () => {
+      const obj1 = {a: 1, b: '2', c: true};
+      const obj2 = {a: 1, b: '2', c: false};
+      expect(areObjectsEqual(obj1, obj2)).toBe(false);
+    });
+  
+    test('should return true for two empty objects', () => {
+      const obj1 = {};
+      const obj2 = {};
+      expect(areObjectsEqual(obj1, obj2)).toBe(true);
+    });
+  
+    test('should return false for an object and null', () => {
+      const obj1 = {a: 1, b: '2', c: true};
+      const obj2 = null;
+      expect(areObjectsEqual(obj1, obj2)).toBe(false);
+    });
+
+    test('should return false for an object and undefined', () => {
+        const obj1 = {a: 1, b: '2', c: true};
+        const obj2 = undefined;
+        expect(areObjectsEqual(obj1, obj2)).toBe(false);
+      });
+  
+    test('should return false for two objects with different number of properties', () => {
+      const obj1 = {a: 1, b: '2', c: true};
+      const obj2 = {a: 1, b: '2'};
+      expect(areObjectsEqual(obj1, obj2)).toBe(false);
+    });
+  
+    test('should return true for two objects with same properties in different order', () => {
+      const obj1 = {a: 1, b: '2'};
+      const obj2 = {b: '2', a: 1};
+      expect(areObjectsEqual(obj1, obj2)).toBe(true);
+    });
+  });
+  

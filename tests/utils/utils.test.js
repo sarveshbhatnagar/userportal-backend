@@ -40,7 +40,7 @@ describe('Utils Module : Build Response', () => {
 
 });
 
-describe('isCharacterALetter', () => {
+describe('Utils Module : isCharacterALetter', () => {
     test("Should return true if character is a letter", () => {
         const response = isCharacterALetter("a");
         expect(response).toEqual(true)
@@ -80,7 +80,7 @@ describe('isCharacterALetter', () => {
 });
 
 
-describe('Check if empty', () => {
+describe('Utils Module : Check if empty', () => {
     test("Should return true if value is null", () => {
         const response = checkIfEmpty(null);
         expect(response).toEqual(true)
@@ -108,7 +108,7 @@ describe('Check if empty', () => {
 });
 
 
-describe('areObjectsEqual', () => {
+describe('Utils Module : areObjectsEqual', () => {
     test('should return true for two equal objects', () => {
       const obj1 = {a: 1, b: '2', c: true};
       const obj2 = {a: 1, b: '2', c: true};

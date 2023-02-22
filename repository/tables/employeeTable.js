@@ -7,7 +7,7 @@ class EmployeeTable {
         // TODO: Create unified parameters 
         const params = {
             TableName: Tables.EMPLOYEE,
-            Key: { id }
+            Key: { username: id }
         };
 
         const result = await DATABASE.get(params);
@@ -36,8 +36,10 @@ class EmployeeTable {
                 ':attrValue': isActive
             }
         }
+        console.log(params)
         
         let result = await DATABASE.update(params);
+        console.log(result)
         return result;
     }
 }

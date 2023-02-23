@@ -11,21 +11,21 @@ const email = "testemail";
 const name = "testname";
 const isManager = false;
 const isActive = true;
-const managerHash = "testmanagerhash";
+const teamName = "testteamName";
 
 const userWithMissingName = new UserBuilder(username)
                         .setEmail(email)
                         .setPassword(password)
                         .setIsActive(isActive)
                         .setIsManager(isManager)
-                        .setManagerHash(managerHash);
+                        .setteamName(teamName);
 
 const completeUser = new UserBuilder(username)
                         .setEmail(email)
                         .setPassword(password)
                         .setIsActive(isActive)
                         .setIsManager(isManager)
-                        .setManagerHash(managerHash)
+                        .setteamName(teamName)
                         .setName(name);
 
 

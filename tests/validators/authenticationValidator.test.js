@@ -1,4 +1,4 @@
-import {RegisterValidator} from "../../validators/authenticationValidator"
+import {AuthenticationParameters, RegisterValidator} from "../../validators/authenticationValidator"
 import {UserBuilder} from "../../models/user";
 import { ValidateHelper } from "../../utils/validateHelper";
 import {areObjectsEqual} from "../../utils/utils";
@@ -10,7 +10,7 @@ const validUser = new UserBuilder("abc")
     .setPassword("00000000")
     .setIsActive(true)
     .setIsManager(false)
-    .setManagerHash("yes")
+    .setteamName("yes")
     .build();
 
 
@@ -19,6 +19,16 @@ describe('AuthenticationValidator Module', () => {
         const response = RegisterValidator.validate(validUser);
         const expectedResponse  = new ValidateHelper();
         expect(areObjectsEqual(response, expectedResponse)).toBe(true);    
-    })
+    });
+
+    test("Has proper login parameters", () => {
+        const loginParameters = ["username", "password"];
+        expect(AuthenticationParameters.LOGIN).toEqual(loginParameters);
+    });
+
+    test("Has proper register parameters", () => {
+        const registerParameters = ["password", "email", "username", "isManager", "isActive", "teamName", "name"];
+        expect(AuthenticationParameters.REGISTER).toEqual(registerParameters);
+    });
 
 });

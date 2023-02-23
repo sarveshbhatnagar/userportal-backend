@@ -5,16 +5,16 @@ class User{
     name: string;
     isActive: boolean;
     isManager: boolean;
-    managerHash: string;
+    teamName: string;
 
-    constructor(name: string, email: string, username: string, isManager: boolean, isActive: boolean, managerHash: string, password: string){
+    constructor(name: string, email: string, username: string, isManager: boolean, isActive: boolean, teamName: string, password: string){
         this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
         this.isActive = isActive;
         this.isManager = isManager;
-        this.managerHash = managerHash;
+        this.teamName = teamName;
     }
 }
 
@@ -25,7 +25,7 @@ class UserBuilder{
     name: string;
     isManager: boolean;
     isActive: boolean;
-    managerHash: string;
+    teamName: string;
     constructor(username: string){
         this.username = username;
         return this;
@@ -56,8 +56,8 @@ class UserBuilder{
         return this;
     }
 
-    setManagerHash(managerHash: string){
-        this.managerHash = managerHash;
+    setteamName(teamName: string){
+        this.teamName = teamName;
         return this;
     }
 
@@ -66,7 +66,7 @@ class UserBuilder{
             throw new Error('username is missing');
         }
         
-        return new User(this.name,this.email, this.username, this.isManager, this.isActive, this.managerHash, this.password)
+        return new User(this.name,this.email, this.username, this.isManager, this.isActive, this.teamName, this.password)
     }
 }
 

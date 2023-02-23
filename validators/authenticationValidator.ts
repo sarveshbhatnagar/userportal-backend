@@ -6,7 +6,7 @@ import { User } from "../models/user";
 
 class AuthenticationParameters{
     static LOGIN = ["username", "password"];
-    static REGISTER = ["password", "email", "username", "isManager", "isActive", "managerHash", "name"]
+    static REGISTER = ["password", "email", "username", "isManager", "isActive", "teamName", "name"]
 }
 
 
@@ -72,4 +72,4 @@ class RegisterValidator implements AuthenticationValidator{
     }
 }
 
-export {LoginValidator, RegisterValidator};
+export {LoginValidator, RegisterValidator, AuthenticationParameters};

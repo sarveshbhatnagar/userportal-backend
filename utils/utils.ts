@@ -1,8 +1,10 @@
+import { User } from "../models/user";
 import { validateResponse } from "../validators/utilsValidator"
+import { ValidateHelper } from "./validateHelper";
 
-function buildResponse(statusCode, body){
+function buildResponse(statusCode: number, body: { message: string; field?: string; }){
     if(!validateResponse(statusCode, body)){
-        throw new Error("Build Response parameters are invalid", statusCode, body);
+        throw new Error("Build Response parameters are invalid" + statusCode + body);
     }
 
     return {
@@ -16,18 +18,18 @@ function buildResponse(statusCode, body){
     }
 }
 
-function checkIfEmpty(val){
+function checkIfEmpty(val: string | null | undefined){
     return val === null || val === "" || val === undefined;
 }
 
-function isCharacterALetter(char) {
+function isCharacterALetter(char: string) {
     if(checkIfEmpty(char)){
         return false;
     }
     return (/[a-zA-Z]/).test(char)
   }
 
-function findEmptyParameters(parameters, object){
+function findEmptyParameters(parameters: string[], object: User){
     let emptyParameters = ""
     for(var indx in parameters){
         if(checkIfEmpty(object[parameters[indx]])){
@@ -38,7 +40,7 @@ function findEmptyParameters(parameters, object){
     return emptyParameters
 }
 
-function areObjectsEqual(obj1, obj2) {
+function areObjectsEqual(obj1: any, obj2: any) {
     if (obj1 === null && obj2 === null || obj1 === undefined && obj2 === undefined) {
         return true;
     }

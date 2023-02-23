@@ -59,7 +59,7 @@ class LoginValidator implements AuthenticationValidator{
 
     static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
         let errorResult = new ValidateHelper();
-        if(!responseData.username || !requestData.password){
+        if(!responseData.username){
             errorResult.setError(CustomErrorBuilder
                                     .setMessage(Messages.INVALIDCREDENTIALS)
                                     .setStatus(400)

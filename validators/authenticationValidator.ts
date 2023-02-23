@@ -4,6 +4,11 @@ import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import { Messages } from "../utils/constants";
 import { User } from "../models/user";
 
+class AuthenticationParameters{
+    static LOGIN = ["username", "password"];
+    static REGISTER = ["password", "email", "username", "isManager", "isActive", "managerHash", "name"]
+}
+
 
 abstract class AuthenticationValidator{
     static validateEmptyUser(user: User): ValidateHelper{
@@ -44,8 +49,7 @@ class LoginValidator implements AuthenticationValidator{
         if(errorResult.getError()){
             return errorResult;
         }
-        let parameters = ["password", "username"]
-        errorResult = AuthenticationValidator.validateEmptyParameters(parameters, user);
+        errorResult = AuthenticationValidator.validateEmptyParameters(AuthenticationParameters.LOGIN, user);
         if(errorResult.getError()){
             return errorResult;
         }
@@ -60,8 +64,7 @@ class RegisterValidator implements AuthenticationValidator{
         if(errorResult.getError()){
             return errorResult;
         }
-        let parameters = ["password", "email", "username", "isManager", "isActive", "managerHash", "name"]
-        errorResult = AuthenticationValidator.validateEmptyParameters(parameters, user);
+        errorResult = AuthenticationValidator.validateEmptyParameters(AuthenticationParameters.REGISTER, user);
         if(errorResult.getError()){
             return errorResult;
         }

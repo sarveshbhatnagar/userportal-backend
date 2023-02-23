@@ -6,6 +6,7 @@ import sinon from 'sinon';
 import { LoginValidator } from '../../validators/authenticationValidator';
 import { EmployeeTable } from '../../repository/tables/employeeTable';
 import bcrypt from 'bcryptjs/dist/bcrypt';
+import { CustomErrorBuilder } from '../../utils/customError';
 
 
 
@@ -73,7 +74,41 @@ describe('Authentication : Login Module', () => {
         sinon.assert.calledOnce(LoginValidator.validateRequest);
         sinon.assert.calledOnce(EmployeeTable.getEmployee);
         expect(result).toEqual(buildResponse(200, {message: "Login successful", token: "token"}));
+    });
+
+    it('should return error response if the username returned is undefined', async () => {
+        sandbox.stub(LoginValidator, 'validateRequest').returns({ error: false });
+        sandbox.stub(EmployeeTable, 'getEmployee').resolves({});
+        const result = await Authentication.login(completeUser.build())
+        sinon.assert.calledOnce(LoginValidator.validateRequest);
+        sinon.assert.calledOnce(EmployeeTable.getEmployee);
+        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
+                                                .setStatus(400)
+                                                .setField("username")
+                                                .build().createResponse());    
+
+    });
+
+
+    it('should return error response if the password is incorrect', async () => {
+        sandbox.stub(LoginValidator, 'validateRequest').returns({ error: false });
+        sandbox.stub(EmployeeTable, 'getEmployee').resolves({username: 'testuser', password: 'correctpassword'});
+        const result = await Authentication.login(completeUser.build())
+        sinon.assert.calledOnce(LoginValidator.validateRequest);
+        sinon.assert.calledOnce(EmployeeTable.getEmployee);
+        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
+                                                .setStatus(400)
+                                                .setField("password")
+                                                .build().createResponse());    
+
+    });
+
 });
+
+
+
+
+
 
 
 describe('Authentication : Register Module', () => {
@@ -93,7 +128,5 @@ describe('Authentication : Register Module', () => {
             expect(response).toEqual(buildResponse(200, {message: "Register Successfull"}));
         });
         
-    });
-
-
 });
+

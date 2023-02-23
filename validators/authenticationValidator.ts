@@ -59,13 +59,15 @@ class LoginValidator implements AuthenticationValidator{
 
     static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
         let errorResult = new ValidateHelper();
-        if(!requestData){
+        if(!responseData.username || !requestData.password){
             errorResult.setError(CustomErrorBuilder
                                     .setMessage(Messages.INVALIDCREDENTIALS)
                                     .setStatus(400)
                                     .setField("username")
                                     .build())
         }
+
+        console.log(errorResult.error)
 
         if(!errorResult.error && !bcrypt.compareSync(requestData.password, responseData.password)){
             errorResult.setError(CustomErrorBuilder

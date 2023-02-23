@@ -1,27 +1,25 @@
-class DatabaseSchema {
-    constructor() {
-        if (this.constructor === Database) {
-            throw new Error("Database is an abstract class");
-        }
+abstract class DatabaseSchema {
+    private constructor() {
+        throw new Error("Database is an abstract class");
     }
 
-    getInstance() {
+    static getInstance() {
         throw new Error("Method 'getInstance()' must be implemented.");
     }
 
-    get(data){
+    static get(data){
         throw new Error("Method 'getData()' must be implemented.");
     }
 
-    put(data){
+    static put(data){
         throw new Error("Method 'putData()' must be implemented.");
     }
 
-    update(data){
+    static update(data){
         throw new Error("Method 'updateData()' must be implemented.");
     }
 
-    delete(data){
+    static delete(data){
         throw new Error("Method 'deleteData()' must be implemented.");
     }
 

@@ -1,6 +1,6 @@
 import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper} from "../utils/validateHelper";
-import { isCharacterALetter, findEmptyParameters, checkIfEmpty } from "../utils/utils";
+import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import AWS from 'aws-sdk'
 
 

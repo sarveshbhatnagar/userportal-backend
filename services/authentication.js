@@ -15,8 +15,16 @@ class Authentication {
         // TODO compare password
         // TODO return token with response.
         return buildResponse(200, {message: "Login successful"});
+    }
 
-}
+    register(user){
+        const validationResult = validateRegister(user);
+
+        if(validationResult.error){
+            return validationResult.getErrorResponse();
+        }
+        return buildResponse(200, {message: "Register Successfull"})
+    }
 
 
 

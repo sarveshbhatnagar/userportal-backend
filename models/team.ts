@@ -51,11 +51,11 @@ class TeamBuilder{
     }
 
     static resetArgs(){
-        // this.team_name = null;
-        // this.owner = null;
-        // this.members = null;
-        // this.products = null;
-        // this.permissions = null;
+        this.team_name = "";
+        this.owner = "";
+        this.members = [];
+        this.products = [];
+        this.permissions = [];
     }
 
     static build(){

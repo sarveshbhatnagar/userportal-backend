@@ -1,4 +1,4 @@
-const validateStatusCode = (statusCode) => {
+const validateStatusCode = (statusCode: number) => {
     if (!statusCode) {
         return false;
     }

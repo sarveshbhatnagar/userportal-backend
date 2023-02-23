@@ -1,5 +1,13 @@
 class User{
-    constructor(name, email, username, isManager, isActive, managerHash, password){
+    username: string;
+    password: string;
+    email: string;
+    name: string;
+    isActive: boolean;
+    isManager: boolean;
+    managerHash: string;
+
+    constructor(name: string, email: string, username: string, isManager: boolean, isActive: boolean, managerHash: string, password: string){
         this.username = username;
         this.password = password;
         this.email = email;
@@ -11,37 +19,44 @@ class User{
 }
 
 class UserBuilder{
-    constructor(username){
+    username: string;
+    email: string;
+    password: string;
+    name: string;
+    isManager: boolean;
+    isActive: boolean;
+    managerHash: string;
+    constructor(username: string){
         this.username = username;
         return this;
     }
 
-    setEmail(email){
+    setEmail(email: string){
         this.email = email;
         return this;
     }
 
-    setPassword(password){
+    setPassword(password: string){
         this.password = password;
         return this;
     }
 
-    setName(name){
+    setName(name: string){
         this.name = name;
         return this;
     }
  
-    setIsManager(isManager){
+    setIsManager(isManager: boolean){
         this.isManager = isManager;
         return this;
     }
 
-    setIsActive(isActive){
+    setIsActive(isActive: boolean){
         this.isActive = isActive;
         return this;
     }
 
-    setManagerHash(managerHash){
+    setManagerHash(managerHash: string){
         this.managerHash = managerHash;
         return this;
     }

@@ -1,7 +1,8 @@
 import AWS from 'aws-sdk';
 import {DatabaseSchema} from "../databaseSchema";
 
-class AWSProvider extends DatabaseSchema {
+class AWSProvider implements DatabaseSchema {
+    static dynamoDb: AWS.DynamoDB.DocumentClient;
 
     static setDynamoDb() {
         AWS.config.update({
@@ -17,7 +18,7 @@ class AWSProvider extends DatabaseSchema {
         return this.dynamoDb;
     }
 
-    static async get(params) {
+    static async get(params: AWS.DynamoDB.DocumentClient.GetItemInput) {
         return AWSProvider.getInstance().get(params).promise()
         .then((data) => data.Item)
         .catch((err) => {
@@ -26,7 +27,7 @@ class AWSProvider extends DatabaseSchema {
         });
     }
 
-    static async put(params) {
+    static async put(params: AWS.DynamoDB.DocumentClient.PutItemInput) {
         return AWSProvider.getInstance().put(params).promise()
         .then((_) => true)
         .catch((err) => {
@@ -35,7 +36,7 @@ class AWSProvider extends DatabaseSchema {
         });
     }
 
-    static async update(params) {
+    static async update(params: AWS.DynamoDB.DocumentClient.UpdateItemInput) {
         return AWSProvider.getInstance().update(params).promise()
         .then((_) => true)
         .catch((err) => {
@@ -44,7 +45,7 @@ class AWSProvider extends DatabaseSchema {
         });
     }
 
-    static async delete(params) {
+    static async delete(params: AWS.DynamoDB.DocumentClient.DeleteItemInput) {
         return AWSProvider.getInstance().delete(params).promise()
         .then((_) => true)
         .catch((err) => {

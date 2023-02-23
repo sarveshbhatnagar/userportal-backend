@@ -1,7 +1,7 @@
 import {EmployeeTable} from '../../../repository/tables/employeeTable';
 import sinon from 'sinon';
 import {expect} from 'chai';
-import { DATABASE } from '../../../utils/constants';
+import { DATABASE, Tables } from '../../../utils/constants';
 import { UserBuilder} from '../../../models/user';
 
 
@@ -104,21 +104,16 @@ describe('EmployeeTableUpdateOperation', () => {
             .setManagerHash("yes").build()
 
         const expectedParams = {
-            TableName: 'st-employee',
-            Key: { username: employee.username},
+            TableName: Tables.EMPLOYEE,
+            Key: { username: employee.username },
             UpdateExpression: 'SET #attrName = :attrValue',
-            ExpressionAttributeName: {
-                '#attrName' : 'isActive'
-            },
-            ExpressionAttributeValue: {
-                ':attrValue': employee.isActive
-            }
+            ExpressionAttributeNames: { '#attrName': 'isActive' },
+            ExpressionAttributeValues: { ':attrValue': !employee.isActive }
         }
-        console.log(expectedParams)
 
         updateStub.withArgs(expectedParams).returns(true);
 
-        const result = await EmployeeTable.updateActiveStatus(employee, employee.isActive)
+        const result = await EmployeeTable.updateActiveStatus(employee, !employee.isActive)
         expect(result).to.eql(true);
 
     });

@@ -2,13 +2,7 @@ import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper} from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import AWS from 'aws-sdk'
-
-
-
-const dynamodb = new AWS.DynamoDB.DocumentClient();
-AWS.config.update({region: 'us-west-2'});
-
-
+import { Messages } from "../utils/constants";
 
 
 function validateRegistration(user){
@@ -30,7 +24,7 @@ function validateRegistration(user){
     
     if(!checkIfEmpty(emptyParameters)){
         validateHelper.setError(CustomErrorBuilder
-            .setMessage("Missing Registration arguments")
+            .setMessage(Messages.MISSINGARGUMENTS)
             .setField(emptyParameters)
             .setStatus(400)
             .build());

@@ -1,9 +1,12 @@
 // create a class for authentication containing functions like login, register, forgot password, etc.
 import { buildResponse } from '../utils/utils';
 import { validateLogin } from '../validators/loginValidator';
+import { validateRegistration } from '../validators/registerValidator';
+
+
 class Authentication {
 
-    login(user){
+    static async login(user){
         const validationResult = validateLogin(user);
         if(validationResult.error){
             return validationResult.getErrorResponse();
@@ -11,8 +14,8 @@ class Authentication {
         return buildResponse(200, {message: "Login successful"});
     }
 
-    register(user){
-        const validationResult = validateRegister(user);
+    static async register(user){
+        const validationResult = validateRegistration(user);
         if(validationResult.error){
             return validationResult.getErrorResponse();
         }
@@ -20,3 +23,5 @@ class Authentication {
     }
 
 }
+
+export {Authentication};

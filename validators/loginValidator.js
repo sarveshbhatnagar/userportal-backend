@@ -2,6 +2,7 @@
 import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
+import { Messages } from "../utils/constants";
 
 
 function validateLogin(user){
@@ -23,7 +24,7 @@ function validateLogin(user){
     
     if(!checkIfEmpty(emptyParameters)){
         validateHelper.setError(CustomErrorBuilder
-            .setMessage("Missing Login arguments")
+            .setMessage(Messages.MISSINGARGUMENTS)
             .setField(emptyParameters)
             .setStatus(400)
             .build());

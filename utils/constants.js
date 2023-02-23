@@ -6,6 +6,11 @@ class Tables {
     static TEAMS = 'st-teams';
 }
 
+class Messages {
+    static MISSINGARGUMENTS = 'Missing arguments';
+    static INVALIDARGUMENTS = 'Invalid arguments';
+}
+
 const DATABASE = AWSProvider;
 
-export { Tables, DATABASE };
+export { Tables, DATABASE, Messages };

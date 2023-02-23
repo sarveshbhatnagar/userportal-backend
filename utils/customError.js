@@ -21,9 +21,9 @@ class CustomErrorBuilder{
     }
 
     static resetArgs(){
-        this.message = null;
-        this.status = null;
-        this.field = null;
+        this.message = undefined;
+        this.status = undefined;
+        this.field = undefined;
     }
 
     static build(){

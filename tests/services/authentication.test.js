@@ -1,4 +1,4 @@
-import {buildResponse, findEmptyParameters} from '../../utils/utils';
+import {buildResponse} from '../../utils/utils';
 import {Authentication} from '../../services/authentication';
 import { Messages } from '../../utils/constants';
 import { UserBuilder } from '../../models/user';

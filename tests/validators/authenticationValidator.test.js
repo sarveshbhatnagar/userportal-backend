@@ -1,4 +1,4 @@
-import {validateRegistration} from "../../validators/registerValidator";
+import {RegisterValidator} from "../../validators/authenticationValidator"
 import {UserBuilder} from "../../models/user";
 import { ValidateHelper } from "../../utils/validateHelper";
 import {areObjectsEqual} from "../../utils/utils";
@@ -14,9 +14,9 @@ const validUser = new UserBuilder("abc")
     .build();
 
 
-describe('registerValidators Module', () => {
+describe('AuthenticationValidator Module', () => {
     test("Should return default ValidateHelper", () => {
-        const response = validateRegistration(validUser);
+        const response = RegisterValidator.validate(validUser);
         const expectedResponse  = new ValidateHelper();
         expect(areObjectsEqual(response, expectedResponse)).toBe(true);    
     })

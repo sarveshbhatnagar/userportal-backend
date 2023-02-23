@@ -1,13 +1,15 @@
+import { CustomError } from "./customError";
+
 class ValidateHelper{
-    error = false;
-    errorData = null;
+    error: boolean;
+    errorData: null|CustomError;
 
     constructor(){
         this.error = false;
         this.errorData = null;
     }
 
-    setError(errorData){
+    setError(errorData: CustomError | null){
         this.error = true;
         this.errorData = errorData;
     }
@@ -22,7 +24,7 @@ class ValidateHelper{
 
     getErrorResponse(){
         if(this.error){
-            return this.errorData.createResponse();
+            return this.errorData?.createResponse();
         }
         throw new Error("No error data to create response");
     }

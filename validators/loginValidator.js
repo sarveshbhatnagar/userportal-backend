@@ -18,10 +18,8 @@ function validateLogin(user){
 
     let parameters = ["password", "username"]
 
-    console.log(user)
     
     let emptyParameters = findEmptyParameters(parameters, user)
-    console.log(emptyParameters)
     
     if(!checkIfEmpty(emptyParameters)){
         validateHelper.setError(CustomErrorBuilder

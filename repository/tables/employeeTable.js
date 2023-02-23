@@ -36,10 +36,8 @@ class EmployeeTable {
                 ':attrValue': isActive
             }
         }
-        console.log(params)
         
         let result = await DATABASE.update(params);
-        console.log(result)
         return result;
     }
 }

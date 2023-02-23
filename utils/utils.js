@@ -28,8 +28,6 @@ function isCharacterALetter(char) {
   }
 
 function findEmptyParameters(parameters, object){
-    console.log("findEmptyParameters")
-    console.log(parameters)
     let emptyParameters = ""
     for(var indx in parameters){
         if(checkIfEmpty(object[parameters[indx]])){

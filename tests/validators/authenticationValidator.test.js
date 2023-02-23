@@ -2,7 +2,7 @@ import {AuthenticationParameters, RegisterValidator} from "../../validators/auth
 import {UserBuilder} from "../../models/user";
 import { ValidateHelper } from "../../utils/validateHelper";
 import {areObjectsEqual} from "../../utils/utils";
-import {expect, jest, test} from '@jest/globals';
+import {expect, test} from '@jest/globals';
 
 const validUser = new UserBuilder("abc")
     .withEmail("abc@gasdfn")

@@ -3,6 +3,7 @@ import { ValidateHelper } from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import { Messages } from "../utils/constants";
 import { User } from "../models/user";
+import bcrypt from "bcryptjs/dist/bcrypt";
 
 
 abstract class AuthenticationValidator{
@@ -36,6 +37,10 @@ abstract class AuthenticationValidator{
         throw new Error("Method not implemented");
     };
 
+    static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
+        throw new Error("Method not implemented");
+    }
+
 }
 
 class LoginValidator implements AuthenticationValidator{
@@ -50,6 +55,28 @@ class LoginValidator implements AuthenticationValidator{
             return errorResult;
         }
         return new ValidateHelper();
+    }
+
+    static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
+        let errorResult = new ValidateHelper();
+        if(!requestData){
+            errorResult.setError(CustomErrorBuilder
+                                    .setMessage(Messages.INVALIDCREDENTIALS)
+                                    .setStatus(400)
+                                    .setField("username")
+                                    .build())
+        }
+
+        if(!errorResult.error && !bcrypt.compareSync(requestData.password, responseData.password)){
+            errorResult.setError(CustomErrorBuilder
+                                    .setMessage(Messages.INVALIDCREDENTIALS)
+                                    .setStatus(400)
+                                    .setField("password")
+                                    .build())
+            return errorResult;
+        }
+        
+        return errorResult;
     }
     
 }

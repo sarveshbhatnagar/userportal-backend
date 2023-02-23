@@ -16,12 +16,12 @@ class Authentication {
         if(validationResult.error){
             return validationResult.getErrorResponse();
         }
+        
         let remoteUser = await EmployeeTable.getEmployee(user.username);
-        if(!remoteUser){
-            return CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS).setStatus(400).setField("username").build();
-        }
-        if(!bcrypt.compareSync(user.password, remoteUser.password)){
-            return CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS).setStatus(400).setField("password").build();
+        let result = LoginValidator.validateInternalResponse(user, remoteUser);
+
+        if(result.error){
+            return result.getErrorResponse();
         }
 
         return buildResponse(200, {message: "Login successful", token: "token"});

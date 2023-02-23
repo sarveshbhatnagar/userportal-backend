@@ -61,7 +61,7 @@ describe('Authentication : Register Module', () => {
     
         test('Should return a 400 error if no user is provided', async () => {
             const response = await Authentication.register();
-            expect(response).toEqual(buildResponse(400, {message: "No user provided"}));
+            expect(response).toEqual(buildResponse(400, {message: "No user provided", field: ""}));
         });
         
         test('Missing Name in user', async () => {

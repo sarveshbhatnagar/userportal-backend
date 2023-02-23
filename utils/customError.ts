@@ -1,29 +1,32 @@
 import { buildResponse } from "./utils";
 
 class CustomErrorBuilder{
+    static message: string;
+    static status: number;
+    static field: string;
     constructor(){
         throw new Error("ErrorBuilder is not meant to be instantiated");
     }
 
-    static setMessage(message){
+    static setMessage(message: string){
         this.message = message;
         return this;
     }
 
-    static setStatus(status){
+    static setStatus(status: number){
         this.status = status;
         return this;
     }
 
-    static setField(field){
+    static setField(field: string){
         this.field = field;
         return this;
     }
 
     static resetArgs(){
-        this.message = undefined;
-        this.status = undefined;
-        this.field = undefined;
+        this.message = "";
+        this.status = 999;
+        this.field = "";
     }
 
     static build(){
@@ -38,7 +41,10 @@ class CustomErrorBuilder{
 }
 
 class CustomError{
-    constructor(message, status, field){
+    message: any;
+    field: any;
+    status: any;
+    constructor(message: string, status: number, field: string){
         this.message = message;
         this.field = field;
         this.status = status;

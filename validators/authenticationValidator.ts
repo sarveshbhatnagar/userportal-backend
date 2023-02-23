@@ -15,8 +15,8 @@ abstract class AuthenticationValidator{
         let validateHelper = new ValidateHelper();
         if(!user){
             validateHelper.setError(CustomErrorBuilder
-                        .setMessage("No user provided")
-                        .setStatus(400)
+                        .withMessage("No user provided")
+                        .withStatus(400)
                         .build());
         }
         return validateHelper;
@@ -28,9 +28,9 @@ abstract class AuthenticationValidator{
         
         if(!checkIfEmpty(emptyParameters)){
             validateHelper.setError(CustomErrorBuilder
-                .setMessage(Messages.MISSINGARGUMENTS)
-                .setField(emptyParameters)
-                .setStatus(400)
+                .withMessage(Messages.MISSINGARGUMENTS)
+                .withField(emptyParameters)
+                .withStatus(400)
                 .build());
             return validateHelper
         }

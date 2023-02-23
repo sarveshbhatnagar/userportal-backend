@@ -14,19 +14,19 @@ const isActive = true;
 const teamName = "testteamName";
 
 const userWithMissingName = new UserBuilder(username)
-                        .setEmail(email)
-                        .setPassword(password)
-                        .setIsActive(isActive)
-                        .setIsManager(isManager)
-                        .setteamName(teamName);
+                        .withEmail(email)
+                        .withPassword(password)
+                        .withIsActive(isActive)
+                        .withIsManager(isManager)
+                        .withteamName(teamName);
 
 const completeUser = new UserBuilder(username)
-                        .setEmail(email)
-                        .setPassword(password)
-                        .setIsActive(isActive)
-                        .setIsManager(isManager)
-                        .setteamName(teamName)
-                        .setName(name);
+                        .withEmail(email)
+                        .withPassword(password)
+                        .withIsActive(isActive)
+                        .withIsManager(isManager)
+                        .withteamName(teamName)
+                        .withName(name);
 
 
 

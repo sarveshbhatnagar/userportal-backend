@@ -63,12 +63,12 @@ describe('EmployteeTablePutOperation', () => {
 
     it('should put an employee', async () => {
         const employee = new UserBuilder('123')
-            .setEmail("abc@gasdfn")
-            .setName("abc")
-            .setPassword("00000000")
-            .setIsActive(true)
-            .setIsManager(false)
-            .setteamName("yes").build()
+            .withEmail("abc@gasdfn")
+            .withName("abc")
+            .withPassword("00000000")
+            .withIsActive(true)
+            .withIsManager(false)
+            .withteamName("yes").build()
         const expectedParams = {
             Item: employee,
             TableName: 'st-employee'
@@ -96,12 +96,12 @@ describe('EmployeeTableUpdateOperation', () => {
 
     it('should update an employee', async () => {
         const employee = new UserBuilder('123')
-            .setEmail("abc@gasdfn")
-            .setName("abc")
-            .setPassword("00000000")
-            .setIsActive(true)
-            .setIsManager(false)
-            .setteamName("yes").build()
+            .withEmail("abc@gasdfn")
+            .withName("abc")
+            .withPassword("00000000")
+            .withIsActive(true)
+            .withIsManager(false)
+            .withteamName("yes").build()
 
         const expectedParams = {
             TableName: Tables.EMPLOYEE,

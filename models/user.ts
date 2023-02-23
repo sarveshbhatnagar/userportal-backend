@@ -31,32 +31,32 @@ class UserBuilder{
         return this;
     }
 
-    setEmail(email: string){
+    withEmail(email: string){
         this.email = email;
         return this;
     }
 
-    setPassword(password: string){
+    withPassword(password: string){
         this.password = password;
         return this;
     }
 
-    setName(name: string){
+    withName(name: string){
         this.name = name;
         return this;
     }
  
-    setIsManager(isManager: boolean){
+    withIsManager(isManager: boolean){
         this.isManager = isManager;
         return this;
     }
 
-    setIsActive(isActive: boolean){
+    withIsActive(isActive: boolean){
         this.isActive = isActive;
         return this;
     }
 
-    setteamName(teamName: string){
+    withteamName(teamName: string){
         this.teamName = teamName;
         return this;
     }

@@ -25,27 +25,27 @@ class TeamBuilder{
         throw new Error("TeamBuilder is not meant to be instantiated");
     }
 
-    static setTeamName(teamName: any){
+    static withTeamName(teamName: any){
         this.teamName = teamName;
         return this;
     }
 
-    static setOwner(owner: any){
+    static withOwner(owner: any){
         this.owner = owner;
         return this;
     }
 
-    static setMembers(members: any){
+    static withMembers(members: any){
         this.members = members;
         return this;
     }
 
-    static setProducts(products: any){
+    static withProducts(products: any){
         this.products = products;
         return this;
     }
 
-    static setPermissions(permissions: any){
+    static withPermissions(permissions: any){
         this.permissions = permissions;
         return this;
     }

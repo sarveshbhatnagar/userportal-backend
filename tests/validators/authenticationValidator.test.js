@@ -5,12 +5,12 @@ import {areObjectsEqual} from "../../utils/utils";
 import {expect, jest, test} from '@jest/globals';
 
 const validUser = new UserBuilder("abc")
-    .setEmail("abc@gasdfn")
-    .setName("abc")
-    .setPassword("00000000")
-    .setIsActive(true)
-    .setIsManager(false)
-    .setteamName("yes")
+    .withEmail("abc@gasdfn")
+    .withName("abc")
+    .withPassword("00000000")
+    .withIsActive(true)
+    .withIsManager(false)
+    .withteamName("yes")
     .build();
 
 

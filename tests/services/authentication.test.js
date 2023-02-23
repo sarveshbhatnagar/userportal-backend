@@ -18,14 +18,14 @@ const userWithMissingName = new UserBuilder(username)
                         .withPassword(password)
                         .withIsActive(isActive)
                         .withIsManager(isManager)
-                        .withteamName(teamName);
+                        .withTeamName(teamName);
 
 const completeUser = new UserBuilder(username)
                         .withEmail(email)
                         .withPassword(password)
                         .withIsActive(isActive)
                         .withIsManager(isManager)
-                        .withteamName(teamName)
+                        .withTeamName(teamName)
                         .withName(name);
 
 

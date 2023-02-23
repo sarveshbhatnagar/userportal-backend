@@ -10,7 +10,7 @@ const validUser = new UserBuilder("abc")
     .withPassword("00000000")
     .withIsActive(true)
     .withIsManager(false)
-    .withteamName("yes")
+    .withTeamName("yes")
     .build();
 
 

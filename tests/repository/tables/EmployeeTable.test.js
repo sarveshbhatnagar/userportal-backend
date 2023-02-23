@@ -68,7 +68,7 @@ describe('EmployteeTablePutOperation', () => {
             .withPassword("00000000")
             .withIsActive(true)
             .withIsManager(false)
-            .withteamName("yes").build()
+            .withTeamName("yes").build()
         const expectedParams = {
             Item: employee,
             TableName: 'st-employee'
@@ -101,7 +101,7 @@ describe('EmployeeTableUpdateOperation', () => {
             .withPassword("00000000")
             .withIsActive(true)
             .withIsManager(false)
-            .withteamName("yes").build()
+            .withTeamName("yes").build()
 
         const expectedParams = {
             TableName: Tables.EMPLOYEE,

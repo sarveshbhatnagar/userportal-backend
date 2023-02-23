@@ -56,7 +56,7 @@ class UserBuilder{
         return this;
     }
 
-    withteamName(teamName: string){
+    withTeamName(teamName: string){
         this.teamName = teamName;
         return this;
     }

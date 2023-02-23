@@ -41,9 +41,9 @@ class CustomErrorBuilder{
 }
 
 class CustomError{
-    message: any;
-    field: any;
-    status: any;
+    message: string;
+    field: string;
+    status: number;
     constructor(message: string, status: number, field: string){
         this.message = message;
         this.field = field;

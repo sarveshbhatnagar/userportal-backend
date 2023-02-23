@@ -32,14 +32,14 @@ abstract class AuthenticationValidator{
         return validateHelper
     }
 
-    static validate(user: User) : ValidateHelper{
+    static validateRequest(user: User) : ValidateHelper{
         throw new Error("Method not implemented");
     };
 
 }
 
 class LoginValidator implements AuthenticationValidator{
-    static validate(user: User) {
+    static validateRequest(user: User) {
         let errorResult = AuthenticationValidator.validateEmptyUser(user);
         if(errorResult.getError()){
             return errorResult;
@@ -55,7 +55,7 @@ class LoginValidator implements AuthenticationValidator{
 }
 
 class RegisterValidator implements AuthenticationValidator{
-    static validate(user: User) {
+    static validateRequest(user: User) {
         let errorResult = AuthenticationValidator.validateEmptyUser(user);
         if(errorResult.getError()){
             return errorResult;

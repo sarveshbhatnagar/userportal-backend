@@ -1,7 +1,12 @@
 import {buildResponse} from '../../utils/utils';
 import {Authentication} from '../../services/authentication';
-import { Messages } from '../../utils/constants';
+import { DATABASE, Messages } from '../../utils/constants';
 import { UserBuilder } from '../../models/user';
+import sinon from 'sinon';
+import { LoginValidator } from '../../validators/authenticationValidator';
+import { EmployeeTable } from '../../repository/tables/employeeTable';
+import bcrypt from 'bcryptjs/dist/bcrypt';
+
 
 
 
@@ -33,6 +38,18 @@ const completeUser = new UserBuilder(username)
 
 
 describe('Authentication : Login Module', () => {
+    const sandbox = sinon.createSandbox();
+
+    const user = new UserBuilder(username).setPassword(password).build();
+
+    const mockEmployee = {
+        username: 'testuser',
+        password: bcrypt.hashSync(password, 10)
+    };
+
+    afterEach(() => {
+        sandbox.restore();
+    });
 
     test('Should return a 400 error if no user is provided', async () => {
         const response = await Authentication.login();
@@ -49,11 +66,13 @@ describe('Authentication : Login Module', () => {
         expect(response).toEqual(buildResponse(400, {message: Messages.MISSINGARGUMENTS, field: "password,"}));
     });
 
-    test('Should return a 200 if user is valid', async () => {
-        const response = await Authentication.login({username: username, password: password});
-        expect(response).toEqual(buildResponse(200, {message: "Login successful"}));
-    });
-    
+    it('should return a success response if the username and password are correct', async () => {
+        sandbox.stub(LoginValidator, 'validateRequest').returns({ error: false });
+        sandbox.stub(EmployeeTable, 'getEmployee').resolves(mockEmployee);
+        const result = await Authentication.login(completeUser.build())
+        sinon.assert.calledOnce(LoginValidator.validateRequest);
+        sinon.assert.calledOnce(EmployeeTable.getEmployee);
+        expect(result).toEqual(buildResponse(200, {message: "Login successful", token: "token"}));
 });
 
 
@@ -74,7 +93,7 @@ describe('Authentication : Register Module', () => {
             expect(response).toEqual(buildResponse(200, {message: "Register Successfull"}));
         });
         
+    });
+
+
 });
-
-
-

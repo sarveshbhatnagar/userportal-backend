@@ -20,7 +20,12 @@ class PersonalInfoBuilder{
     state: string;
     mobile: string;
     email: string;
-    constructor(email: string){
+
+    constructor(){
+        return this;
+    }
+
+    withEmail(email: string){
         this.email = email;
         return this;
     }
@@ -49,3 +54,5 @@ class PersonalInfoBuilder{
         return new PersonalInfo(this.address, this.city, this.state, this.mobile, this.email);
     }
 }
+
+export { PersonalInfo, PersonalInfoBuilder };

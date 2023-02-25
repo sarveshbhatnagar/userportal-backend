@@ -1,12 +1,31 @@
+import {checkIfEmpty} from "../../utils/utils";
+
 class PublicInfo{
     firstName: string;
     lastName: string;
     username: string;
+    fullName: string;
 
     constructor(firstName: string, lastName: string, username: string){
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName ? firstName : "";
+        this.lastName = lastName ? lastName : "";
         this.username = username;
+        this.fullName = this.createFullName(this.firstName, this.lastName);
+    }
+
+    createFullName(firstName: string|undefined, lastName: string|undefined){
+        if(checkIfEmpty(firstName) && checkIfEmpty(lastName)){
+            return "";
+        }
+        if(checkIfEmpty(firstName)){
+            return `${lastName}`;
+        }
+        else if(checkIfEmpty(lastName)){
+            return `${firstName}`;
+        }
+        else{
+            return `${lastName} ${firstName}`;
+        }
     }
 }
 

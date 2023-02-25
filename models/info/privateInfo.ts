@@ -8,7 +8,10 @@ class PrivateInfo{
 
 class PrivateInfoBuilder{
     password: string;
-    constructor(password: string){
+    constructor(){
+    }
+
+    withPassword(password: string){
         this.password = password;
         return this;
     }

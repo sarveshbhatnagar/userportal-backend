@@ -34,3 +34,5 @@ class EmploymentInfoBuilder{
         return new EmploymentInfo(this.teamName, this.isManager, this.isActive);
     }
 }
+
+export { EmploymentInfo, EmploymentInfoBuilder };

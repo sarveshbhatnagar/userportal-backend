@@ -16,7 +16,7 @@ const validUser = new UserBuilder("abc")
 
 describe('AuthenticationValidator Module', () => {
     test("Should return default ValidateHelper", () => {
-        const response = RegisterValidator.validate(validUser);
+        const response = RegisterValidator.validateRequest(validUser);
         const expectedResponse  = new ValidateHelper();
         expect(areObjectsEqual(response, expectedResponse)).toBe(true);    
     });

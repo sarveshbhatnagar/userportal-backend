@@ -9,6 +9,7 @@ class Tables {
 class Messages {
     static MISSINGARGUMENTS = 'Missing arguments';
     static INVALIDARGUMENTS = 'Invalid arguments';
+    static INVALIDCREDENTIALS = 'Invalid credentials';
 }
 
 const DATABASE = AWSProvider;

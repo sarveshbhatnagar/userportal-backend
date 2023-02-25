@@ -2,7 +2,7 @@ import { User } from "../models/user";
 import { validateResponse } from "../validators/utilsValidator"
 import { ValidateHelper } from "./validateHelper";
 
-function buildResponse(statusCode: number, body: { message: string; field?: string; }){
+function buildResponse(statusCode: number, body: any){
     if(!validateResponse(statusCode, body)){
         throw new Error("Build Response parameters are invalid" + statusCode + body);
     }

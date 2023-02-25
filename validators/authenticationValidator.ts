@@ -3,6 +3,7 @@ import { ValidateHelper } from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import { Messages } from "../utils/constants";
 import { User } from "../models/user";
+import bcrypt from "bcryptjs/dist/bcrypt";
 
 
 abstract class AuthenticationValidator{
@@ -32,14 +33,18 @@ abstract class AuthenticationValidator{
         return validateHelper
     }
 
-    static validate(user: User) : ValidateHelper{
+    static validateRequest(user: User) : ValidateHelper{
         throw new Error("Method not implemented");
     };
+
+    static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
+        throw new Error("Method not implemented");
+    }
 
 }
 
 class LoginValidator implements AuthenticationValidator{
-    static validate(user: User) {
+    static validateRequest(user: User) {
         let errorResult = AuthenticationValidator.validateEmptyUser(user);
         if(errorResult.getError()){
             return errorResult;
@@ -51,11 +56,35 @@ class LoginValidator implements AuthenticationValidator{
         }
         return new ValidateHelper();
     }
+
+    static validateInternalResponse(requestData: any, responseData: any) : ValidateHelper{
+        let errorResult = new ValidateHelper();
+        if(!responseData.username){
+            errorResult.setError(CustomErrorBuilder
+                                    .setMessage(Messages.INVALIDCREDENTIALS)
+                                    .setStatus(400)
+                                    .setField("username")
+                                    .build())
+        }
+
+        console.log(errorResult.error)
+
+        if(!errorResult.error && !bcrypt.compareSync(requestData.password, responseData.password)){
+            errorResult.setError(CustomErrorBuilder
+                                    .setMessage(Messages.INVALIDCREDENTIALS)
+                                    .setStatus(400)
+                                    .setField("password")
+                                    .build())
+            return errorResult;
+        }
+        
+        return errorResult;
+    }
     
 }
 
 class RegisterValidator implements AuthenticationValidator{
-    static validate(user: User) {
+    static validateRequest(user: User) {
         let errorResult = AuthenticationValidator.validateEmptyUser(user);
         if(errorResult.getError()){
             return errorResult;

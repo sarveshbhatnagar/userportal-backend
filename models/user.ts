@@ -2,16 +2,16 @@ class User{
     username: string;
     password: string;
     email: string;
-    name: string;
+    fullName: string;
     isActive: boolean;
     isManager: boolean;
     teamName: string;
 
-    constructor(name: string, email: string, username: string, isManager: boolean, isActive: boolean, teamName: string, password: string){
+    constructor(fullName: string, email: string, username: string, isManager: boolean, isActive: boolean, teamName: string, password: string){
         this.username = username;
         this.password = password;
         this.email = email;
-        this.name = name;
+        this.fullName = fullName;
         this.isActive = isActive;
         this.isManager = isManager;
         this.teamName = teamName;
@@ -22,7 +22,7 @@ class UserBuilder{
     username: string;
     email: string;
     password: string;
-    name: string;
+    fullName: string;
     isManager: boolean;
     isActive: boolean;
     teamName: string;
@@ -41,8 +41,8 @@ class UserBuilder{
         return this;
     }
 
-    withName(name: string){
-        this.name = name;
+    withFullName(fullName: string){
+        this.fullName = fullName;
         return this;
     }
  
@@ -66,7 +66,7 @@ class UserBuilder{
             throw new Error('username is missing');
         }
         
-        return new User(this.name,this.email, this.username, this.isManager, this.isActive, this.teamName, this.password)
+        return new User(this.fullName,this.email, this.username, this.isManager, this.isActive, this.teamName, this.password)
     }
 }
 

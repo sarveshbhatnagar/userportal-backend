@@ -26,12 +26,12 @@ describe('EmployeeTableGetOperation', () => {
         }
 
         getStub.withArgs(expectedParams).returns({
-            Item: {username: '123', name: 'John Doe'}
+            Item: {username: '123', fullName: 'John Doe'}
         });
 
         const employee = await EmployeeTable.getEmployee('123');
 
-        expect(employee).to.eql({username: '123', name: 'John Doe'});
+        expect(employee).to.eql({username: '123', fullName: 'John Doe'});
     });
 
     it('should return error response on miss for an employee', async () => {
@@ -64,7 +64,7 @@ describe('EmployteeTablePutOperation', () => {
     it('should put an employee', async () => {
         const employee = new UserBuilder('123')
             .withEmail("abc@gasdfn")
-            .withName("abc")
+            .withFullName("abc")
             .withPassword("00000000")
             .withIsActive(true)
             .withIsManager(false)
@@ -97,7 +97,7 @@ describe('EmployeeTableUpdateOperation', () => {
     it('should update an employee', async () => {
         const employee = new UserBuilder('123')
             .withEmail("abc@gasdfn")
-            .withName("abc")
+            .withFullName("abc")
             .withPassword("00000000")
             .withIsActive(true)
             .withIsManager(false)

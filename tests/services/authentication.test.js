@@ -14,7 +14,7 @@ import { CustomErrorBuilder } from '../../utils/customError';
 const username = "testuser";
 const password = "testpassword";
 const email = "testemail";
-const name = "testname";
+const fullName = "testname";
 const isManager = false;
 const isActive = true;
 const teamName = "testteamName";
@@ -33,7 +33,7 @@ const completeUser = new UserBuilder(username)
                         .withIsActive(isActive)
                         .withIsManager(isManager)
                         .withTeamName(teamName)
-                        .withName(name);
+                        .withFullName(fullName);
 
 
 
@@ -119,9 +119,9 @@ describe('Authentication : Register Module', () => {
             expect(response).toEqual(buildResponse(400, {message: "No user provided", field: ""}));
         });
         
-        test('Missing Name in user', async () => {
+        test('Missing fullName in user', async () => {
             const response = await Authentication.register(userWithMissingName.build());
-            expect(response).toEqual(buildResponse(400, {message: Messages.MISSINGARGUMENTS, field: "name,"}));
+            expect(response).toEqual(buildResponse(400, {message: Messages.MISSINGARGUMENTS, field: "fullName,"}));
         });
     
         test('Should return a 200 if user is valid', async () => {

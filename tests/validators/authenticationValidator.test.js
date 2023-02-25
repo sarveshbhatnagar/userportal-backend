@@ -6,7 +6,7 @@ import {expect, test} from '@jest/globals';
 
 const validUser = new UserBuilder("abc")
     .withEmail("abc@gasdfn")
-    .withName("abc")
+    .withFullName("abc")
     .withPassword("00000000")
     .withIsActive(true)
     .withIsManager(false)
@@ -27,7 +27,7 @@ describe('AuthenticationValidator Module', () => {
     });
 
     test("Has proper register parameters", () => {
-        const registerParameters = ["password", "email", "username", "isManager", "isActive", "teamName", "name"];
+        const registerParameters = ["password", "email", "username", "isManager", "isActive", "teamName", "fullName"];
         expect(AuthenticationParameters.REGISTER).toEqual(registerParameters);
     });
 

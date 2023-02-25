@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs/dist/bcrypt";
 
 class AuthenticationParameters{
     static LOGIN = ["username", "password"];
-    static REGISTER = ["password", "email", "username", "isManager", "isActive", "teamName", "name"]
+    static REGISTER = ["password", "email", "username", "isManager", "isActive", "teamName", "fullName"]
 }
 
 

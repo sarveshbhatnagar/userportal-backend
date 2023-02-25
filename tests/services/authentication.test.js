@@ -1,6 +1,6 @@
 import {buildResponse} from '../../utils/utils';
 import {Authentication} from '../../services/authentication';
-import { DATABASE, Messages } from '../../utils/constants';
+import { Messages } from '../../utils/constants';
 import { UserBuilder } from '../../models/user';
 import sinon from 'sinon';
 import { LoginValidator } from '../../validators/authenticationValidator';
@@ -42,7 +42,7 @@ const completeUser = new UserBuilder(username)
 describe('Authentication : Login Module', () => {
     const sandbox = sinon.createSandbox();
 
-    const user = new UserBuilder(username).setPassword(password).build();
+    const user = new UserBuilder(username).withPassword(password).build();
 
     const mockEmployee = {
         username: 'testuser',
@@ -83,9 +83,9 @@ describe('Authentication : Login Module', () => {
         const result = await Authentication.login(completeUser.build())
         sinon.assert.calledOnce(LoginValidator.validateRequest);
         sinon.assert.calledOnce(EmployeeTable.getEmployee);
-        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
-                                                .setStatus(400)
-                                                .setField("username")
+        expect(result).toEqual(CustomErrorBuilder.withMessage(Messages.INVALIDCREDENTIALS)
+                                                .withStatus(400)
+                                                .withField("username")
                                                 .build().createResponse());    
 
     });
@@ -97,9 +97,9 @@ describe('Authentication : Login Module', () => {
         const result = await Authentication.login(completeUser.build())
         sinon.assert.calledOnce(LoginValidator.validateRequest);
         sinon.assert.calledOnce(EmployeeTable.getEmployee);
-        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
-                                                .setStatus(400)
-                                                .setField("password")
+        expect(result).toEqual(CustomErrorBuilder.withMessage(Messages.INVALIDCREDENTIALS)
+                                                .withStatus(400)
+                                                .withField("password")
                                                 .build().createResponse());    
 
     });

@@ -65,9 +65,9 @@ class LoginValidator implements AuthenticationValidator{
         let errorResult = new ValidateHelper();
         if(!responseData.username){
             errorResult.setError(CustomErrorBuilder
-                                    .setMessage(Messages.INVALIDCREDENTIALS)
-                                    .setStatus(400)
-                                    .setField("username")
+                                    .withMessage(Messages.INVALIDCREDENTIALS)
+                                    .withStatus(400)
+                                    .withField("username")
                                     .build())
         }
 
@@ -75,9 +75,9 @@ class LoginValidator implements AuthenticationValidator{
 
         if(!errorResult.error && !bcrypt.compareSync(requestData.password, responseData.password)){
             errorResult.setError(CustomErrorBuilder
-                                    .setMessage(Messages.INVALIDCREDENTIALS)
-                                    .setStatus(400)
-                                    .setField("password")
+                                    .withMessage(Messages.INVALIDCREDENTIALS)
+                                    .withStatus(400)
+                                    .withField("password")
                                     .build())
             return errorResult;
         }

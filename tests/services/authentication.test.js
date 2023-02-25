@@ -1,7 +1,7 @@
 import {buildResponse} from '../../utils/utils';
 import {Authentication} from '../../services/authentication';
 import { Messages } from '../../utils/constants';
-import { UserBuilder } from '../../models/user';
+import { UserBuilder } from '../../models/user/user';
 import sinon from 'sinon';
 import { LoginValidator } from '../../validators/authenticationValidator';
 import { EmployeeTable } from '../../repository/tables/employeeTable';

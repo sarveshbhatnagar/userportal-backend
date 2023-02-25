@@ -8,13 +8,13 @@ class User{
     teamName: string;
 
     constructor(fullName: string, email: string, username: string, isManager: boolean, isActive: boolean, teamName: string, password: string){
-        this.username = username;
-        this.password = password;
-        this.email = email;
         this.fullName = fullName;
-        this.isActive = isActive;
+        this.email = email;
+        this.username = username;
         this.isManager = isManager;
+        this.isActive = isActive;
         this.teamName = teamName;
+        this.password = password;
     }
 }
 

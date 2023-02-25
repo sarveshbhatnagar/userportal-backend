@@ -2,7 +2,7 @@ import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import { Messages } from "../utils/constants";
-import { User } from "../models/user";
+import { User } from "../models/user/user";
 import bcrypt from "bcryptjs/dist/bcrypt";
 
 class AuthenticationParameters{

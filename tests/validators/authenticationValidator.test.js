@@ -1,5 +1,5 @@
 import {AuthenticationParameters, RegisterValidator} from "../../validators/authenticationValidator"
-import {UserBuilder} from "../../models/user";
+import {UserBuilder} from "../../models/user/user";
 import { ValidateHelper } from "../../utils/validateHelper";
 import {areObjectsEqual} from "../../utils/utils";
 import {expect, test} from '@jest/globals';

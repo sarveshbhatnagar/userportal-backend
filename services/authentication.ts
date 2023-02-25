@@ -3,6 +3,7 @@ import { buildResponse } from '../utils/utils';
 // import { validateRegistration } from '../validators/registerValidator';
 import { RegisterValidator, LoginValidator } from '../validators/authenticationValidator';
 import { User } from '../models/user/user';
+
 import { EmployeeTable } from '../repository/tables/employeeTable';
 import { CustomErrorBuilder } from '../utils/customError';
 import { Messages } from '../utils/constants';

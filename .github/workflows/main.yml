@@ -10,20 +10,19 @@ on :
       - main
 
 jobs: 
-  tests: 
+  rub-tests: 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-      - uses: action/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: action/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      -name: npm install
-       run: npm ci
-      - name: npm test
+      -name: Checkout code
+       uses: action/checkout@v2
+
+       //install npm dependencies, cache them correctly
+       // and run all Crypress tests
+      -name: Crypress run
+       uses: cypress-io/github-action@v2
+       with:
+        build : npm run build
+        start: npm start
+      - name: Jest run
         run: npm test

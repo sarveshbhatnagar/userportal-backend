@@ -2,19 +2,19 @@ class User{
     username: string;
     password: string;
     email: string;
-    name: string;
+    fullName: string;
     isActive: boolean;
     isManager: boolean;
-    managerHash: string;
+    teamName: string;
 
-    constructor(name: string, email: string, username: string, isManager: boolean, isActive: boolean, managerHash: string, password: string){
-        this.username = username;
-        this.password = password;
+    constructor(fullName: string, email: string, username: string, isManager: boolean, isActive: boolean, teamName: string, password: string){
+        this.fullName = fullName;
         this.email = email;
-        this.name = name;
-        this.isActive = isActive;
+        this.username = username;
         this.isManager = isManager;
-        this.managerHash = managerHash;
+        this.isActive = isActive;
+        this.teamName = teamName;
+        this.password = password;
     }
 }
 
@@ -22,42 +22,42 @@ class UserBuilder{
     username: string;
     email: string;
     password: string;
-    name: string;
+    fullName: string;
     isManager: boolean;
     isActive: boolean;
-    managerHash: string;
+    teamName: string;
     constructor(username: string){
         this.username = username;
         return this;
     }
 
-    setEmail(email: string){
+    withEmail(email: string){
         this.email = email;
         return this;
     }
 
-    setPassword(password: string){
+    withPassword(password: string){
         this.password = password;
         return this;
     }
 
-    setName(name: string){
-        this.name = name;
+    withFullName(fullName: string){
+        this.fullName = fullName;
         return this;
     }
  
-    setIsManager(isManager: boolean){
+    withIsManager(isManager: boolean){
         this.isManager = isManager;
         return this;
     }
 
-    setIsActive(isActive: boolean){
+    withIsActive(isActive: boolean){
         this.isActive = isActive;
         return this;
     }
 
-    setManagerHash(managerHash: string){
-        this.managerHash = managerHash;
+    withTeamName(teamName: string){
+        this.teamName = teamName;
         return this;
     }
 
@@ -66,7 +66,7 @@ class UserBuilder{
             throw new Error('username is missing');
         }
         
-        return new User(this.name,this.email, this.username, this.isManager, this.isActive, this.managerHash, this.password)
+        return new User(this.fullName,this.email, this.username, this.isManager, this.isActive, this.teamName, this.password)
     }
 }
 

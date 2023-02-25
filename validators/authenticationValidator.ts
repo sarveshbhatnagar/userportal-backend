@@ -2,8 +2,13 @@ import { CustomErrorBuilder } from "../utils/customError";
 import { ValidateHelper } from "../utils/validateHelper";
 import { findEmptyParameters, checkIfEmpty } from "../utils/utils";
 import { Messages } from "../utils/constants";
-import { User } from "../models/user";
+import { User } from "../models/user/user";
 import bcrypt from "bcryptjs/dist/bcrypt";
+
+class AuthenticationParameters{
+    static LOGIN = ["username", "password"];
+    static REGISTER = ["password", "email", "username", "isManager", "isActive", "teamName", "fullName"]
+}
 
 
 abstract class AuthenticationValidator{
@@ -11,8 +16,8 @@ abstract class AuthenticationValidator{
         let validateHelper = new ValidateHelper();
         if(!user){
             validateHelper.setError(CustomErrorBuilder
-                        .setMessage("No user provided")
-                        .setStatus(400)
+                        .withMessage("No user provided")
+                        .withStatus(400)
                         .build());
         }
         return validateHelper;
@@ -24,9 +29,9 @@ abstract class AuthenticationValidator{
         
         if(!checkIfEmpty(emptyParameters)){
             validateHelper.setError(CustomErrorBuilder
-                .setMessage(Messages.MISSINGARGUMENTS)
-                .setField(emptyParameters)
-                .setStatus(400)
+                .withMessage(Messages.MISSINGARGUMENTS)
+                .withField(emptyParameters)
+                .withStatus(400)
                 .build());
             return validateHelper
         }
@@ -49,8 +54,7 @@ class LoginValidator implements AuthenticationValidator{
         if(errorResult.getError()){
             return errorResult;
         }
-        let parameters = ["password", "username"]
-        errorResult = AuthenticationValidator.validateEmptyParameters(parameters, user);
+        errorResult = AuthenticationValidator.validateEmptyParameters(AuthenticationParameters.LOGIN, user);
         if(errorResult.getError()){
             return errorResult;
         }
@@ -61,9 +65,9 @@ class LoginValidator implements AuthenticationValidator{
         let errorResult = new ValidateHelper();
         if(!responseData.username){
             errorResult.setError(CustomErrorBuilder
-                                    .setMessage(Messages.INVALIDCREDENTIALS)
-                                    .setStatus(400)
-                                    .setField("username")
+                                    .withMessage(Messages.INVALIDCREDENTIALS)
+                                    .withStatus(400)
+                                    .withField("username")
                                     .build())
         }
 
@@ -71,9 +75,9 @@ class LoginValidator implements AuthenticationValidator{
 
         if(!errorResult.error && !bcrypt.compareSync(requestData.password, responseData.password)){
             errorResult.setError(CustomErrorBuilder
-                                    .setMessage(Messages.INVALIDCREDENTIALS)
-                                    .setStatus(400)
-                                    .setField("password")
+                                    .withMessage(Messages.INVALIDCREDENTIALS)
+                                    .withStatus(400)
+                                    .withField("password")
                                     .build())
             return errorResult;
         }
@@ -89,8 +93,7 @@ class RegisterValidator implements AuthenticationValidator{
         if(errorResult.getError()){
             return errorResult;
         }
-        let parameters = ["password", "email", "username", "isManager", "isActive", "managerHash", "name"]
-        errorResult = AuthenticationValidator.validateEmptyParameters(parameters, user);
+        errorResult = AuthenticationValidator.validateEmptyParameters(AuthenticationParameters.REGISTER, user);
         if(errorResult.getError()){
             return errorResult;
         }
@@ -98,4 +101,4 @@ class RegisterValidator implements AuthenticationValidator{
     }
 }
 
-export {LoginValidator, RegisterValidator};
+export {LoginValidator, RegisterValidator, AuthenticationParameters};

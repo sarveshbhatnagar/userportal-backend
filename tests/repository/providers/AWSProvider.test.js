@@ -42,14 +42,14 @@ describe('AWSProvider', () => {
             getStub.restore();
         });
 
-        it('should get an item for get operation! e.g. {id:21, name:sksk}', async () => {
+        it('should get an item for get operation! e.g. {id:21, fullName:sksk}', async () => {
             const params = {
                 Key: {id: '123'},
                 TableName: 'st-employee'
             };
 
             const expectedResponse = {
-                Item: {id: '123', name: 'John Doe'}
+                Item: {id: '123', fullName: 'John Doe'}
             };
 
             getStub.withArgs(params)
@@ -64,7 +64,7 @@ describe('AWSProvider', () => {
                 throw err;
             });
             
-            // It Returns the Item i.e. {id: '123', name: 'John Doe'}
+            // It Returns the Item i.e. {id: '123', fullName: 'John Doe'}
             expect(item).to.eql(expectedResponse.Item);
         });
 

@@ -2,7 +2,7 @@ import {EmployeeTable} from '../../../repository/tables/employeeTable';
 import sinon from 'sinon';
 import {expect} from 'chai';
 import { DATABASE, Tables } from '../../../utils/constants';
-import { UserBuilder} from '../../../models/user';
+import { UserBuilder} from '../../../models/user/user';
 
 
 
@@ -26,12 +26,12 @@ describe('EmployeeTableGetOperation', () => {
         }
 
         getStub.withArgs(expectedParams).returns({
-            Item: {username: '123', name: 'John Doe'}
+            Item: {username: '123', fullName: 'John Doe'}
         });
 
         const employee = await EmployeeTable.getEmployee('123');
 
-        expect(employee).to.eql({username: '123', name: 'John Doe'});
+        expect(employee).to.eql({username: '123', fullName: 'John Doe'});
     });
 
     it('should return error response on miss for an employee', async () => {
@@ -63,12 +63,12 @@ describe('EmployteeTablePutOperation', () => {
 
     it('should put an employee', async () => {
         const employee = new UserBuilder('123')
-            .setEmail("abc@gasdfn")
-            .setName("abc")
-            .setPassword("00000000")
-            .setIsActive(true)
-            .setIsManager(false)
-            .setManagerHash("yes").build()
+            .withEmail("abc@gasdfn")
+            .withFullName("abc")
+            .withPassword("00000000")
+            .withIsActive(true)
+            .withIsManager(false)
+            .withTeamName("yes").build()
         const expectedParams = {
             Item: employee,
             TableName: 'st-employee'
@@ -96,12 +96,12 @@ describe('EmployeeTableUpdateOperation', () => {
 
     it('should update an employee', async () => {
         const employee = new UserBuilder('123')
-            .setEmail("abc@gasdfn")
-            .setName("abc")
-            .setPassword("00000000")
-            .setIsActive(true)
-            .setIsManager(false)
-            .setManagerHash("yes").build()
+            .withEmail("abc@gasdfn")
+            .withFullName("abc")
+            .withPassword("00000000")
+            .withIsActive(true)
+            .withIsManager(false)
+            .withTeamName("yes").build()
 
         const expectedParams = {
             TableName: Tables.EMPLOYEE,

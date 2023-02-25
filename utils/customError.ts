@@ -8,17 +8,17 @@ class CustomErrorBuilder{
         throw new Error("ErrorBuilder is not meant to be instantiated");
     }
 
-    static setMessage(message: string){
+    static withMessage(message: string){
         this.message = message;
         return this;
     }
 
-    static setStatus(status: number){
+    static withStatus(status: number){
         this.status = status;
         return this;
     }
 
-    static setField(field: string){
+    static withField(field: string){
         this.field = field;
         return this;
     }

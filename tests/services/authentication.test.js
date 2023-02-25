@@ -1,7 +1,7 @@
 import {buildResponse} from '../../utils/utils';
 import {Authentication} from '../../services/authentication';
-import { DATABASE, Messages } from '../../utils/constants';
-import { UserBuilder } from '../../models/user';
+import { Messages } from '../../utils/constants';
+import { UserBuilder } from '../../models/user/user';
 import sinon from 'sinon';
 import { LoginValidator } from '../../validators/authenticationValidator';
 import { EmployeeTable } from '../../repository/tables/employeeTable';
@@ -14,25 +14,25 @@ import { CustomErrorBuilder } from '../../utils/customError';
 const username = "testuser";
 const password = "testpassword";
 const email = "testemail";
-const name = "testname";
+const fullName = "testname";
 const isManager = false;
 const isActive = true;
-const managerHash = "testmanagerhash";
+const teamName = "testteamName";
 
 const userWithMissingName = new UserBuilder(username)
-                        .setEmail(email)
-                        .setPassword(password)
-                        .setIsActive(isActive)
-                        .setIsManager(isManager)
-                        .setManagerHash(managerHash);
+                        .withEmail(email)
+                        .withPassword(password)
+                        .withIsActive(isActive)
+                        .withIsManager(isManager)
+                        .withTeamName(teamName);
 
 const completeUser = new UserBuilder(username)
-                        .setEmail(email)
-                        .setPassword(password)
-                        .setIsActive(isActive)
-                        .setIsManager(isManager)
-                        .setManagerHash(managerHash)
-                        .setName(name);
+                        .withEmail(email)
+                        .withPassword(password)
+                        .withIsActive(isActive)
+                        .withIsManager(isManager)
+                        .withTeamName(teamName)
+                        .withFullName(fullName);
 
 
 
@@ -41,7 +41,7 @@ const completeUser = new UserBuilder(username)
 describe('Authentication : Login Module', () => {
     const sandbox = sinon.createSandbox();
 
-    const user = new UserBuilder(username).setPassword(password).build();
+    const user = new UserBuilder(username).withPassword(password).build();
 
     const mockEmployee = {
         username: 'testuser',
@@ -82,9 +82,9 @@ describe('Authentication : Login Module', () => {
         const result = await Authentication.login(completeUser.build())
         sinon.assert.calledOnce(LoginValidator.validateRequest);
         sinon.assert.calledOnce(EmployeeTable.getEmployee);
-        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
-                                                .setStatus(400)
-                                                .setField("username")
+        expect(result).toEqual(CustomErrorBuilder.withMessage(Messages.INVALIDCREDENTIALS)
+                                                .withStatus(400)
+                                                .withField("username")
                                                 .build().createResponse());    
 
     });
@@ -96,9 +96,9 @@ describe('Authentication : Login Module', () => {
         const result = await Authentication.login(completeUser.build())
         sinon.assert.calledOnce(LoginValidator.validateRequest);
         sinon.assert.calledOnce(EmployeeTable.getEmployee);
-        expect(result).toEqual(CustomErrorBuilder.setMessage(Messages.INVALIDCREDENTIALS)
-                                                .setStatus(400)
-                                                .setField("password")
+        expect(result).toEqual(CustomErrorBuilder.withMessage(Messages.INVALIDCREDENTIALS)
+                                                .withStatus(400)
+                                                .withField("password")
                                                 .build().createResponse());    
 
     });
@@ -118,9 +118,9 @@ describe('Authentication : Register Module', () => {
             expect(response).toEqual(buildResponse(400, {message: "No user provided", field: ""}));
         });
         
-        test('Missing Name in user', async () => {
+        test('Missing fullName in user', async () => {
             const response = await Authentication.register(userWithMissingName.build());
-            expect(response).toEqual(buildResponse(400, {message: Messages.MISSINGARGUMENTS, field: "name,"}));
+            expect(response).toEqual(buildResponse(400, {message: Messages.MISSINGARGUMENTS, field: "fullName,"}));
         });
     
         test('Should return a 200 if user is valid', async () => {

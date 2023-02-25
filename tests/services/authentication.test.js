@@ -18,7 +18,6 @@ const fullName = "testname";
 const isManager = false;
 const isActive = true;
 const teamName = "testteamName";
-const teamName = "testteamName";
 
 const userWithMissingName = new UserBuilder(username)
                         .withEmail(email)

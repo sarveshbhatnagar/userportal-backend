@@ -1,27 +1,26 @@
-name: tests
+name: Node.js CI
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-on : 
-  push: 
-    branches: 
-      - main
-  pull_request: 
-    branches: 
-      - main
+jobs:
+  build:
 
-jobs: 
-  rub-tests: 
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: action/checkout@v2
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
 
-       
-      - name: Crypress run
-        uses: cypress-io/github-action@v2
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-         build : npm run build
-         start: npm start
-      - name: Jest run
-        run: npm test
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
